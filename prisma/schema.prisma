@@ -1,0 +1,233 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Locale {
+  en
+  ar
+}
+
+enum Status {
+  DRAFT
+  PUBLISHED
+}
+
+enum CategoryKind {
+  BLOG
+  SOLUTION
+}
+
+enum InquirySource {
+  CONTACT
+  LEAD_BAND
+  HOME
+}
+
+enum InquiryStatus {
+  NEW
+  IN_PROGRESS
+  CLOSED
+}
+
+enum Role {
+  ADMIN
+  EDITOR
+}
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  name         String
+  passwordHash String
+  role         Role     @default(EDITOR)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+/// A site page. `slug` is the path segment after the locale ("" = home).
+model Page {
+  id           String            @id @default(cuid())
+  slug         String            @unique
+  status       Status            @default(PUBLISHED)
+  order        Int               @default(0)
+  showInNav    Boolean           @default(true)
+  translations PageTranslation[]
+  blocks       Block[]
+  createdAt    DateTime          @default(now())
+  updatedAt    DateTime          @updatedAt
+}
+
+model PageTranslation {
+  id             String   @id @default(cuid())
+  page           Page     @relation(fields: [pageId], references: [id], onDelete: Cascade)
+  pageId         String
+  locale         Locale
+  navLabel       String
+  seoTitle       String
+  seoDescription String
+  seoKeywords    String[] @default([])
+  ogImage        String?
+
+  @@unique([pageId, locale])
+}
+
+/// One section on a page. `type` picks the renderer; `settings` holds
+/// locale-agnostic options (variant, image, anchor); text lives per locale.
+model Block {
+  id           String             @id @default(cuid())
+  page         Page               @relation(fields: [pageId], references: [id], onDelete: Cascade)
+  pageId       String
+  type         String
+  order        Int
+  enabled      Boolean            @default(true)
+  anchor       String?
+  settings     Json               @default("{}")
+  translations BlockTranslation[]
+  createdAt    DateTime           @default(now())
+  updatedAt    DateTime           @updatedAt
+
+  @@index([pageId, order])
+}
+
+model BlockTranslation {
+  id      String @id @default(cuid())
+  block   Block  @relation(fields: [blockId], references: [id], onDelete: Cascade)
+  blockId String
+  locale  Locale
+  content Json   @default("{}")
+
+  @@unique([blockId, locale])
+}
+
+model Category {
+  id           String                @id @default(cuid())
+  kind         CategoryKind
+  slug         String
+  order        Int                   @default(0)
+  translations CategoryTranslation[]
+  posts        Post[]
+  solutions    Solution[]
+  createdAt    DateTime              @default(now())
+  updatedAt    DateTime              @updatedAt
+
+  @@unique([kind, slug])
+}
+
+model CategoryTranslation {
+  id          String   @id @default(cuid())
+  category    Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  categoryId  String
+  locale      Locale
+  name        String
+  description String?
+
+  @@unique([categoryId, locale])
+}
+
+model Post {
+  id           String            @id @default(cuid())
+  slug         String            @unique
+  status       Status            @default(DRAFT)
+  publishedAt  DateTime?
+  featured     Boolean           @default(false)
+  coverImage   String?
+  readTime     Int               @default(5)
+  authorName   String?
+  category     Category?         @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  categoryId   String?
+  translations PostTranslation[]
+  createdAt    DateTime          @default(now())
+  updatedAt    DateTime          @updatedAt
+
+  @@index([status, publishedAt])
+}
+
+model PostTranslation {
+  id             String   @id @default(cuid())
+  post           Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+  postId         String
+  locale         Locale
+  title          String
+  excerpt        String
+  /// Paragraph array. Kept as JSON so a richer editor can replace it later
+  /// without a migration.
+  body           Json     @default("[]")
+  tags           String[] @default([])
+  seoTitle       String?
+  seoDescription String?
+
+  @@unique([postId, locale])
+}
+
+model Solution {
+  id           String                @id @default(cuid())
+  slug         String                @unique
+  status       Status                @default(PUBLISHED)
+  order        Int                   @default(0)
+  icon         String?
+  image        String?
+  category     Category?             @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+  categoryId   String?
+  translations SolutionTranslation[]
+  createdAt    DateTime              @default(now())
+  updatedAt    DateTime              @updatedAt
+
+  @@index([status, order])
+}
+
+model SolutionTranslation {
+  id             String   @id @default(cuid())
+  solution       Solution @relation(fields: [solutionId], references: [id], onDelete: Cascade)
+  solutionId     String
+  locale         Locale
+  title          String
+  summary        String
+  body           String?
+  includes       String[] @default([])
+  seoTitle       String?
+  seoDescription String?
+
+  @@unique([solutionId, locale])
+}
+
+model Inquiry {
+  id        String        @id @default(cuid())
+  source    InquirySource @default(CONTACT)
+  status    InquiryStatus @default(NEW)
+  name      String
+  company   String
+  email     String
+  phone     String?
+  reason    String?
+  message   String
+  locale    Locale        @default(en)
+  notes     String?
+  userAgent String?
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+
+  @@index([status, createdAt])
+}
+
+/// Site-wide values that are not a page: brand, nav CTA, footer, contact
+/// details, standards list. `value` is `{ en: ..., ar: ... }` or plain JSON.
+model Setting {
+  key       String   @id
+  value     Json
+  updatedAt DateTime @updatedAt
+}
+
+model Media {
+  id        String   @id @default(cuid())
+  url       String   @unique
+  alt       String?
+  width     Int?
+  height    Int?
+  bytes     Int?
+  createdAt DateTime @default(now())
+}

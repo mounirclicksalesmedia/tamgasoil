@@ -1,26 +1,269 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* ── Royal green ─────────────────────────────── */
+  --color-green-950: #05211A;
+  --color-green-900: #08301F;
+  --color-green-850: #0A3B2C;
+  --color-green-800: #0C4733;
+  --color-green-700: #0E5A3C;
+  --color-green-600: #15774F;
+  --color-green-300: #8FBFA8;
+  --color-green-100: #E4EFE8;
+  --color-green-50:  #F1F7F3;
+
+  /* ── العنابي / wine ──────────────────────────── */
+  --color-wine-950: #340B14;
+  --color-wine-900: #4E1320;
+  --color-wine-800: #631826;
+  --color-wine-700: #7A1F2F;
+  --color-wine-600: #962A3C;
+  --color-wine-300: #D19AA5;
+  --color-wine-100: #F6E8EB;
+
+  /* ── Neutrals ────────────────────────────────── */
+  --color-ink:     #0B1711;
+  --color-ink-2:   #45564D;
+  --color-ink-3:   #617168;
+  --color-line:    #E1E6E1;
+  --color-line-2:  #EDF0EC;
+  --color-paper:   #FBFAF7;
+  --color-surface: #FFFFFF;
+
+  /* ── Type ────────────────────────────────────── */
+  --font-sans: var(--font-plex-sans), var(--font-plex-arabic), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), var(--font-plex-arabic), ui-monospace, SFMono-Regular, monospace;
+
+  /* ── Motion ──────────────────────────────────── */
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@layer base {
+  * { border-color: var(--color-line); }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-feature-settings: "kern" 1, "liga" 1;
+  }
+
+  /* Arabic needs more leading and slightly looser tracking control */
+  [dir="rtl"] body,
+  [dir="rtl"] {
+    line-height: 1.85;
+  }
+  [dir="rtl"] h1,
+  [dir="rtl"] h2,
+  [dir="rtl"] h3 {
+    line-height: 1.35;
+    letter-spacing: 0;
+  }
+
+  ::selection {
+    background: var(--color-green-700);
+    color: #fff;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  /* Page shell */
+  .shell {
+    @apply mx-auto w-full max-w-[1240px] px-6 md:px-10 xl:max-w-[1340px] 2xl:max-w-[1480px] 2xl:px-12;
+  }
+
+  /* Eyebrow: small wine chip + label, Customer.io style */
+  .eyebrow {
+    @apply flex items-center gap-2.5 font-mono text-[11px] font-medium uppercase tracking-[0.16em];
+  }
+  .eyebrow::before {
+    content: "";
+    @apply inline-block h-1.5 w-1.5 shrink-0 rounded-full bg-wine-700;
+  }
+  /* on the wine section the default chip disappears into the background */
+  .eyebrow-light::before { @apply bg-wine-300; }
+
+  /* Display type scale */
+  .display-1 {
+    @apply text-[clamp(2.4rem,5vw,5.25rem)] font-medium leading-[1.02] tracking-[-0.034em];
+  }
+  .display-2 {
+    @apply text-[clamp(1.85rem,3.3vw,3.5rem)] font-normal leading-[1.09] tracking-[-0.035em];
+  }
+  .display-3 {
+    @apply text-[clamp(1.5rem,2.3vw,2.45rem)] font-normal leading-[1.18] tracking-[-0.025em];
+  }
+  [dir="rtl"] .display-1,
+  [dir="rtl"] .display-2,
+  [dir="rtl"] .display-3 { @apply tracking-normal; }
+
+  .lede {
+    @apply text-[1.0625rem] leading-[1.68] text-ink-2 md:text-[1.15rem] 2xl:text-[1.225rem];
+  }
+
+  /* Buttons */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2.5 rounded-full px-6 py-3.5
+           text-[0.9375rem] font-medium transition-all duration-300 ease-[var(--ease-out-soft)];
+  }
+  .btn-primary {
+    @apply bg-green-800 text-white hover:bg-green-700 hover:shadow-[0_10px_30px_-12px_rgba(14,90,60,0.6)];
+  }
+  .btn-ghost {
+    @apply border border-line bg-surface text-ink hover:border-ink/25 hover:bg-white;
+  }
+  .btn-wine {
+    @apply bg-wine-700 text-white hover:bg-wine-600 hover:shadow-[0_10px_30px_-12px_rgba(122,31,47,0.65)];
+  }
+  .btn-onDark {
+    @apply border border-white/25 text-white hover:border-white/60 hover:bg-white/10;
+  }
+
+  /* Arrow link */
+  .arrow-link {
+    @apply inline-flex items-center gap-2 text-[0.9375rem] font-medium text-green-700
+           transition-colors hover:text-wine-700;
+  }
+  .arrow-link svg { @apply transition-transform duration-300 ease-[var(--ease-out-soft)]; }
+  .arrow-link:hover svg { @apply translate-x-1; }
+  [dir="rtl"] .arrow-link svg { @apply -scale-x-100; }
+  [dir="rtl"] .arrow-link:hover svg { @apply -translate-x-1; }
+
+  /* Mono tag */
+  .tag {
+    @apply inline-flex items-center rounded-full border border-line bg-surface px-3 py-1.5
+           font-mono text-[11px] tracking-[0.06em] text-ink-2;
+  }
+  .tag-onDark {
+    @apply inline-flex items-center rounded-full border border-white/18 bg-white/[0.06] px-3 py-1.5
+           font-mono text-[11px] tracking-[0.06em] text-green-300;
+  }
+
+  /* Hairline rule */
+  .rule { @apply h-px w-full bg-line; }
+
+  .section { @apply py-20 md:py-24 lg:py-28; }
+}
+
+/* ── Scroll reveal ───────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.75s var(--ease-out-soft),
+    transform 0.75s var(--ease-out-soft);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.reveal.is-in { opacity: 1; transform: none; }
+
+/* ── Hero diagram animation ──────────────────────── */
+@keyframes dose-flow {
+  0%   { stroke-dashoffset: 34; opacity: 0; }
+  12%  { opacity: 1; }
+  88%  { opacity: 1; }
+  100% { stroke-dashoffset: 0; opacity: 0; }
+}
+@keyframes sludge-shrink {
+  0%, 12%   { transform: scaleY(1); }
+  62%, 100% { transform: scaleY(0.28); }
+}
+@keyframes oil-rise {
+  0%, 30%  { opacity: 0; transform: translateY(6px); }
+  55%      { opacity: 1; transform: translateY(0); }
+  95%,100% { opacity: 0; transform: translateY(-8px); }
+}
+@keyframes chip-float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-7px); }
+}
+@keyframes ring-pulse {
+  0%   { transform: scale(0.94); opacity: 0.5; }
+  70%  { transform: scale(1.12); opacity: 0; }
+  100% { transform: scale(1.12); opacity: 0; }
+}
+
+.anim-dose   { animation: dose-flow 6s var(--ease-out-soft) infinite; }
+.anim-sludge { animation: sludge-shrink 6s var(--ease-out-soft) infinite; transform-box: fill-box; transform-origin: bottom; }
+.anim-oil    { animation: oil-rise 6s var(--ease-out-soft) infinite; transform-box: fill-box; }
+.anim-chip   { animation: chip-float 7s ease-in-out infinite; }
+.anim-ring   { animation: ring-pulse 3.2s ease-out infinite; transform-box: fill-box; transform-origin: center; }
+
+/* Marquee for the standards strip on small screens */
+@keyframes marquee-x {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.marquee-track { animation: marquee-x 28s linear infinite; }
+[dir="rtl"] .marquee-track { animation-direction: reverse; }
+
+/* ── Arabic typography ───────────────────────────── */
+/* next/font emits an automatic fallback face per font with
+   `unicode-range: U+0-10FFFF`. In a stack of "Plex Sans, Plex Arabic" that
+   fallback sits between the two and renders every Arabic glyph in a
+   metric-adjusted Arial. So on Arabic pages Plex Arabic leads instead.
+   Its Latin coverage is the Plex design, so mixed runs stay consistent. */
+[lang="ar"] {
+  --font-sans: var(--font-plex-arabic), var(--font-plex-sans), ui-sans-serif,
+    system-ui, sans-serif;
+  /* Same trap in the mono stack. Naming the real face skips "IBM Plex Mono
+     Fallback" so Latin keeps the mono and Arabic reaches Plex Arabic. If the
+     name ever stops matching, the var after it degrades to sans rather than
+     breaking. */
+  --font-mono: "IBM Plex Mono", var(--font-plex-arabic), var(--font-plex-mono),
+    ui-monospace, SFMono-Regular, monospace;
+}
+
+/* Letter-spacing breaks the joining of Arabic script, so the tracked
+   mono labels and eyebrows drop it on RTL pages. */
+[dir="rtl"] .eyebrow,
+[dir="rtl"] .tag,
+[dir="rtl"] .tag-onDark,
+[dir="rtl"] .font-mono {
+  letter-spacing: 0;
+}
+[dir="rtl"] .eyebrow {
+  font-size: 12px;
+}
+
+/* Shared finishing details across English and Arabic pages. */
+section[id] { scroll-margin-top: 6rem; }
+a, button, input, textarea, select { -webkit-tap-highlight-color: transparent; }
+a:focus-visible, button:focus-visible {
+  outline: 2px solid var(--color-wine-300);
+  outline-offset: 5px;
+}
+.contact-form { color: var(--color-ink); }
+.contact-form label > span, .contact-form p { color: var(--color-ink-2); }
+.contact-form input, .contact-form textarea {
+  color: var(--color-ink);
+  background: var(--color-surface);
+  border-color: var(--color-line);
+  border-radius: 8px;
+}
+.contact-form input:focus, .contact-form textarea:focus {
+  border-color: var(--color-green-700);
+  box-shadow: 0 0 0 3px var(--color-green-100);
+}
+.contact-form textarea::placeholder { color: var(--color-ink-3); }
+.contact-form button { background: var(--color-wine-700); color: white; }
+.contact-form button:hover { background: var(--color-wine-800); }
+.contact-form [role="alert"] { background: var(--color-wine-100); color: var(--color-wine-800); }
+.contact-form [role="status"] { background: var(--color-green-100); color: var(--color-green-800); }
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; }
 }

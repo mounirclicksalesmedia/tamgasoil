@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+.env
+
+# keep the template; real values live in .env / .env.local (ignored above)
+!.env.example
