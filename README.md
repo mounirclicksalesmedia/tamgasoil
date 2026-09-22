@@ -22,6 +22,21 @@ npm run db:seed                # loads the approved TS copy + the admin user
 npm run dev                    # http://localhost:3000/admin
 ```
 
+## Deployment (preview)
+
+- **GitHub:** `mounirclicksalesmedia/tamgasoil`, branch `main`. Pushing to `main` deploys.
+- **Vercel:** team `mounirclicksalesmedias-projects`, project **`tamgasoil-11xo`** →
+  `https://tamgasoil-11xo.vercel.app`. (An empty project named `tamgasoil` in the
+  same team is a leftover from the first import; safe to delete.)
+- **Database:** Neon, project `tamgasoil`, region us-east-1. `DATABASE_URL` on Vercel
+  is the **pooled** string; run migrations with the unpooled one:
+  `DATABASE_URL=<unpooled> npx prisma migrate deploy`.
+- The Neon integration was installed with the `tamgasoil_` prefix (a stray
+  `DATABASE_URL` blocked the default). Those prefixed variables are unused;
+  the app reads plain `DATABASE_URL`, set by hand to the same pooled string.
+- Going live on tamoilgas.com = add the domain to this Vercel project once
+  GoDaddy access arrives. Nothing else changes.
+
 ## The portal — `/admin`
 
 Everything an editor changes lives in Postgres; the TS content files are now

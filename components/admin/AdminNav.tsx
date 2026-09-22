@@ -19,12 +19,9 @@ export default function AdminNav({ userName }: { userName: string }) {
   const pathname = usePathname();
   return (
     <aside className="sticky top-0 flex h-screen w-60 shrink-0 flex-col border-e border-line bg-surface">
-      <div className="flex items-center gap-3 border-b border-line px-5 py-5">
-        <Logo className="h-8 w-8" />
-        <div className="leading-none">
-          <p className="text-[15px] font-semibold tracking-[-0.01em]">TAM</p>
-          <p className="mt-1 font-mono text-[9.5px] uppercase tracking-[0.18em] text-ink-3">Portal</p>
-        </div>
+      <div className="border-b border-line px-5 py-5">
+        <Logo className="h-auto w-full" />
+        <p className="mt-3 font-mono text-[9.5px] uppercase tracking-[0.18em] text-ink-3">Portal</p>
       </div>
       <nav className="flex-1 px-3 py-4">
         {items.map((item) => {

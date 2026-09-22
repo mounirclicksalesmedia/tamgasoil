@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 type IconProps = { className?: string };
 
 export function ArrowRight({ className = "h-4 w-4" }: IconProps) {
@@ -31,23 +33,15 @@ export function PlayCircle({ className = "h-4 w-4" }: IconProps) {
   );
 }
 
-export function Logo({ className = "h-9 w-9", onDark = false }: IconProps & { onDark?: boolean }) {
-  /* Placeholder mark — replace with the client's vector logo when supplied. */
+export function Logo({ className = "h-auto w-52", onDark = false }: IconProps & { onDark?: boolean }) {
   return (
-    <svg className={className} viewBox="0 0 40 40" fill="none" aria-hidden="true">
-      <rect
-        width="40"
-        height="40"
-        rx="11"
-        className={onDark ? "fill-white/10 stroke-white/25" : "fill-green-800"}
-        strokeWidth="1"
-      />
-      <circle cx="20" cy="20" r="11" stroke="white" strokeOpacity="0.45" strokeWidth="1.5" />
-      <path
-        d="M9.6 22.4a11 11 0 0 0 20.8 0 22 22 0 0 1-20.8 0Z"
-        className="fill-wine-600"
-      />
-      <path d="M20 9v8.4" stroke="white" strokeWidth="1.6" strokeLinecap="round" />
-    </svg>
+    <Image
+      src="/brand/tam-logo.webp"
+      alt="Tam Oil & Gas Services Co., W.L.L."
+      width={1200}
+      height={354}
+      unoptimized
+      className={`${className} object-contain ${onDark ? "brightness-0 invert" : ""}`}
+    />
   );
 }

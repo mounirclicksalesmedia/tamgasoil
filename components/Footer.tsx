@@ -28,15 +28,9 @@ export default function Footer({
       <div className="shell py-16 md:py-20">
         <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr]">
           <div>
-            <div className="flex items-center gap-3">
-              <Logo className="h-10 w-10" />
-              <span className="flex flex-col leading-none">
-                <span className="text-lg font-semibold tracking-[-0.02em]">{c.brand.name}</span>
-                <span className="mt-1 font-mono text-[9.5px] uppercase tracking-[0.18em] text-white/40">
-                  Oil &amp; Gas Services
-                </span>
-              </span>
-            </div>
+            <Link href={`/${locale}`} aria-label={c.brand.fullName} className="inline-block transition-opacity hover:opacity-80">
+              <Logo className="h-auto w-[280px] max-w-full" onDark />
+            </Link>
             <p className="mt-6 max-w-sm text-[0.9375rem] leading-[1.7] text-white/55">
               {f.descriptor}
             </p>

@@ -16,7 +16,7 @@ export default function Growth({ c }: { c: SiteContent }) {
             aria-hidden
             className="absolute inset-x-0 top-[7px] hidden h-px bg-line md:block"
           />
-          <div className="grid gap-12 md:grid-cols-3 md:gap-8">
+          <div className="grid grid-cols-2 gap-x-5 gap-y-10 md:grid-cols-3 md:gap-8 [&>*:last-child]:col-span-2 md:[&>*:last-child]:col-span-1">
             {g.items.map((item, i) => (
               <article
                 key={item.no}
@@ -37,10 +37,10 @@ export default function Growth({ c }: { c: SiteContent }) {
                       {item.period}
                     </span>
                   </div>
-                  <h3 className="mt-5 text-[1.35rem] font-medium tracking-[-0.022em] text-ink">
+                  <h3 className="mt-4 text-[1.05rem] font-medium tracking-[-0.022em] text-ink sm:mt-5 sm:text-[1.35rem]">
                     {item.title}
                   </h3>
-                  <p className="mt-3 text-[0.9375rem] leading-[1.7] text-ink-2">{item.body}</p>
+                  <p className="mt-2 text-[0.8125rem] leading-[1.6] text-ink-2 sm:mt-3 sm:text-[0.9375rem] sm:leading-[1.7]">{item.body}</p>
                 </div>
               </article>
             ))}

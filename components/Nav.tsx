@@ -61,31 +61,13 @@ export default function Nav({
           : "border-b border-line bg-paper/90 backdrop-blur-xl",
       ].join(" ")}
     >
-      <nav className="shell flex h-[76px] items-center justify-between gap-6">
+      <nav className="shell flex h-[76px] items-center justify-between gap-3 sm:gap-6">
         <Link
           href={`/${locale}`}
-          className="flex items-center gap-3 transition-opacity hover:opacity-80"
+          className="shrink-0 transition-opacity hover:opacity-80"
           aria-label={c.brand.fullName}
         >
-          <Logo className="h-9 w-9" onDark={onDark} />
-          <span className="flex flex-col leading-none">
-            <span
-              className={[
-                "text-[1.0625rem] font-semibold tracking-[-0.02em] transition-colors duration-500",
-                onDark ? "text-white" : "text-ink",
-              ].join(" ")}
-            >
-              {c.brand.name}
-            </span>
-            <span
-              className={[
-                "mt-1 font-mono text-[9.5px] uppercase tracking-[0.18em] transition-colors duration-500",
-                onDark ? "text-white/45" : "text-ink-3",
-              ].join(" ")}
-            >
-              Oil &amp; Gas Services
-            </span>
-          </span>
+          <Logo className="h-auto w-[172px] sm:w-[210px] xl:w-[224px]" onDark={onDark} />
         </Link>
 
         <div className="hidden items-center gap-8 lg:flex">

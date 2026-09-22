@@ -56,7 +56,7 @@ export default async function SolutionsPage({
           <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-white/35">
             {s.indexLabel}
           </p>
-          <ul className="mt-5 grid gap-x-8 gap-y-3 sm:grid-cols-2 lg:grid-cols-4">
+          <ul className="mt-5 grid grid-cols-2 gap-x-5 gap-y-3 sm:gap-x-8 lg:grid-cols-4">
             {c.services.items.map((item, i) => (
               <li key={item.no}>
                 <a
@@ -99,11 +99,11 @@ export default async function SolutionsPage({
                   <p className="mt-9 font-mono text-[10px] uppercase tracking-[0.18em] text-ink-3">
                     {s.includesLabel}
                   </p>
-                  <ul className="mt-5 grid gap-x-10 gap-y-0 sm:grid-cols-2">
+                  <ul className="mt-5 grid grid-cols-2 gap-x-5 gap-y-0 sm:gap-x-10">
                     {s.includes[i].map((sub) => (
                       <li
                         key={sub}
-                        className="border-b border-line-2 py-3 text-[0.9375rem] leading-[1.6] text-ink-2"
+                        className="border-b border-line-2 py-2.5 text-[0.8125rem] leading-[1.5] text-ink-2 sm:py-3 sm:text-[0.9375rem] sm:leading-[1.6]"
                       >
                         {sub}
                       </li>
