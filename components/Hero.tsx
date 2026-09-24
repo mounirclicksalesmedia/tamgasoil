@@ -6,7 +6,7 @@ export default function Hero({ c }: { c: SiteContent }) {
     <section className="relative isolate overflow-hidden bg-green-950 text-white">
       {/* ── video bed ─────────────────────────────── */}
       <video
-        className="absolute inset-0 -z-20 h-full w-full object-cover opacity-[0.52]"
+        className="hero-video absolute inset-0 -z-20 h-full w-full object-cover"
         autoPlay
         muted
         loop
@@ -18,15 +18,7 @@ export default function Hero({ c }: { c: SiteContent }) {
         <source src="/media/hero-loop.mp4" type="video/mp4" />
       </video>
 
-      {/* scrim: keeps the headline legible whatever the footage does */}
-      <div
-        aria-hidden
-        className="absolute inset-0 -z-10"
-        style={{
-          background:
-            "linear-gradient(100deg, var(--color-green-950) 0%, color-mix(in srgb, var(--color-green-950) 92%, transparent) 30%, color-mix(in srgb, var(--color-green-950) 66%, transparent) 62%, color-mix(in srgb, var(--color-green-900) 50%, transparent) 100%)",
-        }}
-      />
+      <div aria-hidden className="hero-scrim absolute inset-0 -z-10" />
       <div
         aria-hidden
         className="absolute inset-x-0 bottom-0 -z-10 h-56"

@@ -67,6 +67,13 @@ export const en = {
     registrationItems: ["QatarEnergy", "Saudi Aramco", "OQ"],
   },
 
+  sectionCtas: {
+    whyTam: "Discuss your tank project",
+    process: "Plan your tank treatment",
+    technology: "Talk to a technical specialist",
+    markets: "Discuss a project in your market",
+  },
+
   pillars: {
     eyebrow: "Why TAM",
     heading: "We do not compete on the price of cleaning a tank.",
@@ -149,6 +156,11 @@ export const en = {
   },
 
   process: {
+    interactive: {
+      label: "Inside the process", nonEntry: "No tank entry", cutaway: "3D CUTAWAY",
+      treatment: "Treatment", water: "Water", automatic: "Automatic process",
+      fallback: "Explore the treatment stages below.",
+    },
     eyebrow: "The method",
     heading: "The tank stays closed. The sludge does not.",
     intro:

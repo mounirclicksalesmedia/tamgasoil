@@ -1,3 +1,4 @@
+import SectionCta from "./SectionCta";
 import Image from "next/image";
 import type { SiteContent } from "@/lib/content";
 
@@ -29,6 +30,7 @@ export default function Technology({ c }: { c: SiteContent }) {
           <span className="me-2 font-mono text-[10px] uppercase tracking-[0.14em] text-white/60">{t.tagsLabel}</span>
           {t.tags.map((tag) => <span key={tag} className="tag-onDark">{tag}</span>)}
         </div>
+        <SectionCta label={c.sectionCtas.technology} dark />
       </div>
     </section>
   );

@@ -267,3 +267,78 @@ a:focus-visible, button:focus-visible {
 @media (prefers-reduced-motion: reduce) {
   .reveal { opacity: 1; transform: none; }
 }
+
+/* Blender-authored, browser-native process experience. */
+.tank-experience { min-width: 0; position: relative; color: #edf6ef; background: #082a21; border: 1px solid #b0d5bd24; border-radius: 1rem; overflow: hidden; }
+.tank-topline { display: flex; align-items: center; gap: .6rem; margin: 0 1.7rem; padding: 1.3rem 0; border-bottom: 1px solid #b0d5bd24; font-family: var(--font-mono); font-size: 10px; text-transform: uppercase; letter-spacing: .12em; color: #bdd9ca; }
+.tank-live-dot { width: 5px; height: 5px; background: #9ce4b8; border-radius: 50%; flex-shrink: 0; }
+.tank-topline-end { margin-inline-start: auto; color: #90ac9d; font-size: 9px; letter-spacing: .06em; }
+.tank-viewport { width: 100%; height: clamp(360px, 38vw, 510px); position: relative; isolation: isolate; }
+.tank-canvas { position: absolute; inset: 0; width: 100%; height: 100%; cursor: grab; touch-action: pan-y; }
+.tank-canvas:active { cursor: grabbing; }
+.tank-fallback { position: absolute; inset: 0; z-index: 1; }
+.tank-fallback span { position: absolute; bottom: 15%; inset-inline: 1rem; text-align: center; font-size: 13px; }
+.tank-view-label { position: absolute; top: 1.4rem; inset-inline-start: 1.7rem; pointer-events: none; font-family: var(--font-mono); font-size: 8px; letter-spacing: .16em; line-height: 1.8; color: #93b7a3; }
+.tank-view-label span { color: #c6dfcf; font-size: 11px; }
+.tank-auto-label { position: absolute; top: 1.5rem; inset-inline-end: 1.7rem; display: flex; align-items: center; gap: .5rem; color: #a8c5b4; font-family: var(--font-mono); font-size: 9px; }
+.tank-auto-label .tank-live-dot { animation: tank-breathe 1.4s ease-in-out infinite; }
+.tank-legend { position: absolute; bottom: 1rem; inset-inline: 1rem; display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; pointer-events: none; }
+.tank-legend span { display: inline-flex; align-items: center; gap: .4rem; color: #b9cdc2; font-size: 10px; }
+.tank-legend i { width: 6px; height: 6px; border-radius: 2px; }
+.tank-swatch-treatment { background: #a6ffcb; }.tank-swatch-oil { background: #dbb270; }.tank-swatch-sludge { background: #ae6070; }.tank-swatch-water { background: #68adac; }
+.tank-stage-nav { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); margin: 0 1.7rem; border-top: 1px solid #b0d5bd24; list-style: none; }
+.tank-stage-nav li { position: relative; display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: .6rem; padding: 1.15rem .25rem; color: #88a696; font-size: 14px; transition: color .35s, background .35s; }
+.tank-stage-nav li span { font-family: var(--font-mono); font-size: 10px; color: #719080; }
+.tank-stage-nav li[aria-current="step"] { color: #effff4; background: #b0d5bd09; }
+.tank-stage-nav li[aria-current="step"] span { color: #a6ffcb; }
+.tank-stage-nav li i { position: absolute; top: -1px; inset-inline: 0; height: 2px; overflow: hidden; }
+.tank-stage-nav li b { display: block; height: 100%; background: #a6ffcb; transform-origin: left; animation: tank-progress linear both; }
+[dir="rtl"] .tank-stage-nav li b { transform-origin: right; }
+.tank-stage-detail { margin: 0 2rem; padding: 1.1rem 0 1.6rem; min-height: 126px; }
+.tank-caption { display: flex; align-items: flex-start; gap: 1.3rem; animation: tank-caption-in .45s var(--ease-out-soft) both; }
+.tank-caption-number { color: #85c69d55; font-family: var(--font-mono); font-size: 42px; line-height: 1.2; letter-spacing: -.06em; }
+.tank-stage-detail p { max-width: 720px; color: #b2cabd; font-size: 14px; line-height: 1.7; }
+.tank-stage-detail .tank-stage-title { color: #edf8f0; font-size: 20px; margin-bottom: .35rem; }
+.tank-note { padding: 1rem 1.7rem; border-top: 1px solid #b0d5bd24; font-size: 10px; line-height: 1.6; color: #8fac9c; }
+.tank-static-steps { display: grid; grid-template-columns: repeat(2,1fr); gap: 1.3rem; margin: 0 1.7rem 1.7rem; list-style: decimal inside; color: #c8ddd0; font-size: 13px; }
+.tank-static-steps p { margin-top: .4rem; color: #a8c5b4; line-height: 1.7; }
+.process-section { scroll-margin-top: 75px; }
+.process-explorer { max-width: 1120px; margin-inline: auto; }
+@keyframes tank-progress { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes tank-caption-in { from { opacity: 0; transform: translateY(12px); filter: blur(3px); } to { opacity: 1; transform: translateY(0); filter: blur(0); } }
+@keyframes tank-breathe { 0%,100% { opacity: .4; } 50% { opacity: 1; } }
+@media (max-width: 540px) {
+  .tank-viewport { height: 310px; }
+  .tank-topline { margin-inline: 1rem; font-size: 8px; letter-spacing: .05em; }
+  .tank-topline-end { font-size: 8px; }
+  .tank-view-label { inset-inline-start: 1rem; top: .8rem; font-size: 7px; }
+  .tank-auto-label { inset-inline-end: 1rem; top: 1rem; font-size: 8px; }
+  .tank-stage-nav,.tank-stage-detail { margin-inline: 1rem; }
+  .tank-stage-nav li { font-size: 11px; gap: .35rem; padding: 1rem .2rem; }
+  .tank-stage-detail { min-height: 162px; }
+  .tank-stage-detail p { font-size: 12px; }
+  .tank-stage-detail .tank-stage-title { font-size: 18px; }
+  .tank-caption { gap: .9rem; }
+  .tank-caption-number { font-size: 30px; }
+  .tank-legend { gap: .65rem; }
+  .tank-legend span { font-size: 9px; }
+  .tank-note { padding-inline: 1rem; }
+  .tank-static-steps { grid-template-columns: 1fr; }
+  [dir="rtl"] .tank-stage-nav li { font-size: 10px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tank-caption { animation: none; }
+  .tank-auto-label { display: none; }
+  .tank-stage-nav li b { animation: none; transform: scaleX(1); }
+}
+
+/* Keep the tank farm visible while protecting the hero copy. */
+.hero-video { object-position: 50% 50%; opacity: .8; }
+.hero-scrim { background: linear-gradient(90deg, rgba(5,33,26,.93) 0%, rgba(5,33,26,.78) 35%, rgba(5,33,26,.38) 72%, rgba(5,33,26,.25) 100%); }
+[dir="rtl"] .hero-scrim { background: linear-gradient(270deg, rgba(5,33,26,.93) 0%, rgba(5,33,26,.78) 35%, rgba(5,33,26,.38) 72%, rgba(5,33,26,.25) 100%); }
+#why-tam, #solutions, #contact { scroll-margin-top: 90px; }
+@media (max-width: 767px) {
+  /* Favor the foreground tanks over the central pipe corridor on narrow screens. */
+  .hero-video { object-position: 65% 50%; }
+  .hero-scrim, [dir="rtl"] .hero-scrim { background: linear-gradient(180deg, rgba(5,33,26,.65), rgba(5,33,26,.54) 48%, rgba(5,33,26,.83)); }
+}

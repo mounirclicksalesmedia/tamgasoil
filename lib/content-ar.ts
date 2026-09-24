@@ -69,6 +69,13 @@ export const ar: SiteContent = {
     registrationItems: ["قطر للطاقة", "أرامكو السعودية", "OQ"],
   },
 
+  sectionCtas: {
+    whyTam: "ناقش معنا مشروع خزانك",
+    process: "خطّط لمعالجة خزانك",
+    technology: "تحدّث مع مختص تقني",
+    markets: "ناقش مشروعك في المنطقة",
+  },
+
   pillars: {
     eyebrow: "لماذا تم",
     heading: "نحن لا ننافس على سعر تنظيف الخزان.",
@@ -151,6 +158,11 @@ export const ar: SiteContent = {
   },
 
   process: {
+    interactive: {
+      label: "داخل عملية المعالجة", nonEntry: "دون دخول للخزان", cutaway: "مقطع ثلاثي الأبعاد",
+      treatment: "المعالجة", water: "الماء", automatic: "دورة معالجة تلقائية",
+      fallback: "استكشف مراحل المعالجة أدناه.",
+    },
     eyebrow: "المنهجية",
     heading: "الخزان يبقى مغلقاً. أما الحمأة فلا.",
     intro:

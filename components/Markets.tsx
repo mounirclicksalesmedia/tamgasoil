@@ -1,3 +1,4 @@
+import SectionCta from "./SectionCta";
 import Image from "next/image";
 import type { SiteContent } from "@/lib/content";
 
@@ -59,6 +60,7 @@ export default function Markets({ c }: { c: SiteContent }) {
             </article>
           ))}
         </div>
+        <SectionCta label={c.sectionCtas.markets} />
       </div>
     </section>
   );
