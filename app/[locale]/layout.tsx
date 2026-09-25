@@ -109,7 +109,7 @@ export default async function LocaleLayout({
       suppressHydrationWarning
     >
       <body className="antialiased">
-        <Nav c={c} p={p} locale={typed} />
+        <Nav c={c} locale={typed} />
         {children}
         <Footer c={c} p={p} locale={typed} />
         <ScrollReveal />

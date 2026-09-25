@@ -43,7 +43,7 @@ export default function BlogIndex({ b, locale }: { b: PagesContent["blog"]; loca
           <div className="mt-10 grid gap-x-10 gap-y-12 md:grid-cols-2">
             {visible.map(post => (
               <article key={post.slug}>
-                <Link href={`/${locale}/blog/${post.slug}`} className="group grid gap-5 sm:grid-cols-[0.8fr_1fr] md:grid-cols-1 xl:grid-cols-[0.8fr_1fr]">
+                <Link href={`/${locale}/news/${post.slug}`} className="modern-card group grid gap-5 p-5 sm:grid-cols-[0.8fr_1fr] md:grid-cols-1 xl:grid-cols-[0.8fr_1fr]">
                   <div className="relative aspect-[4/3] overflow-hidden rounded-xl bg-green-100">
                     <Image src={articleThumb(post.slug)} alt="" fill sizes="(min-width: 1280px) 22vw, (min-width: 768px) 45vw, (min-width: 640px) 40vw, 100vw" className="object-cover transition-transform duration-500 group-hover:scale-[1.04]" />
                   </div>
@@ -52,7 +52,7 @@ export default function BlogIndex({ b, locale }: { b: PagesContent["blog"]; loca
                     <h3 className="mt-3 text-xl font-medium leading-[1.3] tracking-[-0.02em] text-green-950 group-hover:text-wine-700">{post.title}</h3>
                     <p className="mt-3 line-clamp-3 text-sm leading-[1.7] text-ink-2">{post.excerpt}</p>
                     <p className="mt-4 text-xs text-ink-3">{new Intl.DateTimeFormat(locale === "ar" ? "ar-QA" : "en-GB", { day: "numeric", month: "short", year: "numeric" }).format(new Date(post.date))} <span aria-hidden>·</span> {post.readTime} {b.minRead}</p>
-                    <span className="arrow-link mt-4 text-sm">{b.readMore}<ArrowRight className="h-4 w-4" /></span>
+                    <span className="arrow-link mt-4 text-sm">{b.readMore}<ArrowRight className="h-4 w-4 rtl:-scale-x-100" /></span>
                   </div>
                 </Link>
               </article>

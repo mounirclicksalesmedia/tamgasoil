@@ -1,34 +1,41 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import type { PagesContent, SiteContent } from "@/lib/content";
+import type { SiteContent } from "@/lib/content";
 import type { Locale } from "@/lib/i18n";
 import { otherLocale } from "@/lib/i18n";
+import { companyHref, companySections, getCorporate } from "@/lib/corporate";
 import { ArrowRight, Logo } from "./Icons";
 
-export default function Nav({
-  c,
-  p,
-  locale,
-}: {
-  c: SiteContent;
-  p: PagesContent;
-  locale: Locale;
-}) {
+export default function Nav({ c, locale }: { c: SiteContent; locale: Locale }) {
+  const t = getCorporate(locale);
+  const pathname = usePathname();
   const links = [
-    { label: p.nav.about, href: `/${locale}/about` },
-    { label: p.nav.services, href: `/${locale}/solutions` },
-    { label: p.nav.blog, href: `/${locale}/blog` },
-    { label: p.nav.contact, href: `/${locale}/contact` },
+    { label: t.nav.services, path: "services" },
+    { label: t.nav.agreements, path: "agreements" },
+    { label: t.nav.news, path: "news" },
+    { label: t.nav.contact, path: "contact" },
   ];
-
-  // The hero is dark, so the bar starts light-on-dark and inverts on scroll.
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [companyOpen, setCompanyOpen] = useState(false);
   const menuButton = useRef<HTMLButtonElement>(null);
+  const companyButton = useRef<HTMLButtonElement>(null);
+  const dropdown = useRef<HTMLDivElement>(null);
+  const mobilePanel = useRef<HTMLDivElement>(null);
   const alt = otherLocale(locale);
   const onDark = !scrolled && !open;
+  const close = () => {
+    setOpen(false);
+    setCompanyOpen(false);
+  };
+  const active = (path: string) =>
+    pathname === `/${locale}/${path}` ||
+    pathname.startsWith(`/${locale}/${path}/`);
+  const linkStyle = (path: string) =>
+    `nav-link ${active(path) ? "is-active" : ""}`;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -39,135 +46,236 @@ export default function Nav({
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
-    const closeOnEscape = (event: KeyboardEvent) => {
-      if (event.key === "Escape" && open) {
-        setOpen(false);
-        menuButton.current?.focus();
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        if (open) {
+          setOpen(false);
+          menuButton.current?.focus();
+        }
+        if (companyOpen) {
+          setCompanyOpen(false);
+          companyButton.current?.focus();
+        }
+      }
+      if (event.key === "Tab" && open) {
+        const nodes = [
+          menuButton.current,
+          ...Array.from(
+            mobilePanel.current?.querySelectorAll<HTMLElement>(
+              "a[href], button",
+            ) ?? [],
+          ),
+        ].filter(
+          (node): node is HTMLElement =>
+            !!node && node.getClientRects().length > 0,
+        );
+        const first = nodes[0],
+          last = nodes[nodes.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last?.focus();
+        }
+        if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first?.focus();
+        }
       }
     };
-    window.addEventListener("keydown", closeOnEscape);
+    const onPointer = (event: PointerEvent) => {
+      if (dropdown.current && !dropdown.current.contains(event.target as Node))
+        setCompanyOpen(false);
+    };
+    const onResize = () => {
+      if (window.innerWidth >= 1280) setOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    window.addEventListener("pointerdown", onPointer);
+    window.addEventListener("resize", onResize);
     return () => {
       document.body.style.overflow = "";
-      window.removeEventListener("keydown", closeOnEscape);
+      window.removeEventListener("keydown", onKey);
+      window.removeEventListener("pointerdown", onPointer);
+      window.removeEventListener("resize", onResize);
     };
-  }, [open]);
+  }, [open, companyOpen]);
 
   return (
     <header
-      className={[
-        "fixed inset-x-0 top-0 z-50 transition-all duration-500 ease-[var(--ease-out-soft)]",
-        onDark
-          ? "border-b border-transparent bg-transparent"
-          : "border-b border-line bg-paper/90 backdrop-blur-xl",
-      ].join(" ")}
+      className={`site-nav fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300 ${onDark ? "nav-dark border-transparent bg-transparent text-white" : "border-line bg-paper/95 text-green-950 backdrop-blur-xl"}`}
     >
-      <nav className="shell flex h-[76px] items-center justify-between gap-3 sm:gap-6">
+      <nav
+        className="shell flex h-[80px] items-center justify-between gap-3 sm:gap-5"
+        aria-label={locale === "ar" ? "القائمة الرئيسية" : "Main navigation"}
+      >
         <Link
           href={`/${locale}`}
-          className="shrink-0 transition-opacity hover:opacity-80"
+          onClick={close}
+          className="shrink-0"
           aria-label={c.brand.fullName}
         >
-          <Logo className="h-auto w-[172px] sm:w-[210px] xl:w-[224px]" onDark={onDark} />
+          <Logo
+            className="h-auto w-[164px] sm:w-[190px] xl:w-[180px]"
+            onDark={onDark}
+          />
         </Link>
-
-        <div className="hidden items-center gap-8 lg:flex">
+        <div className="hidden items-center gap-5 xl:flex 2xl:gap-7">
+          <div
+            ref={dropdown}
+            className="relative"
+            onBlur={(event) => {
+              if (!event.currentTarget.contains(event.relatedTarget as Node))
+                setCompanyOpen(false);
+            }}
+          >
+            <button
+              ref={companyButton}
+              type="button"
+              className={`${linkStyle("company")} flex items-center gap-2`}
+              aria-expanded={companyOpen}
+              aria-controls="company-navigation"
+              onClick={() => setCompanyOpen((v) => !v)}
+            >
+              {t.nav.company}
+              <span
+                aria-hidden
+                className={`nav-chevron ${companyOpen ? "is-open" : ""}`}
+              />
+            </button>
+            {companyOpen && (
+              <div id="company-navigation" className="company-dropdown">
+                <p className="px-4 pb-3 pt-2 text-xs text-ink-3">{t.explore}</p>
+                {companySections.map((section, i) => (
+                  <Link
+                    key={section}
+                    href={companyHref(locale, section)}
+                    onClick={close}
+                    aria-current={
+                      pathname === companyHref(locale, section)
+                        ? "page"
+                        : undefined
+                    }
+                    className="flex items-center gap-4 rounded-xl p-4 text-sm text-green-950 transition-colors hover:bg-green-50 focus-visible:bg-green-50"
+                  >
+                    <span className="font-mono text-[10px] text-wine-700">
+                      0{i + 1}
+                    </span>
+                    {t.sections[section]}
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
           {links.map((item) => (
             <Link
-              key={item.href}
-              href={item.href}
-              className={[
-                "text-[0.9375rem] transition-colors duration-300",
-                onDark ? "text-white/70 hover:text-white" : "text-ink-2 hover:text-ink",
-              ].join(" ")}
+              key={item.path}
+              href={`/${locale}/${item.path}`}
+              className={linkStyle(item.path)}
+              aria-current={active(item.path) ? "page" : undefined}
             >
               {item.label}
             </Link>
           ))}
         </div>
-
         <div className="flex items-center gap-2 sm:gap-3">
           <Link
-            href={`/${alt}`}
+            href={pathname.replace(/^\/(en|ar)(?=\/|$)/, `/${alt}`)}
             hrefLang={alt}
-            className={[
-              "rounded-full border px-3.5 py-2 font-mono text-[11px] font-medium uppercase tracking-[0.1em] transition-colors duration-500",
-              onDark
-                ? "border-white/25 text-white/75 hover:border-white/60 hover:text-white"
-                : "border-line bg-surface/70 text-ink-2 hover:border-ink/25 hover:text-ink",
-            ].join(" ")}
+            onClick={close}
+            aria-label={c.brand.localeLabel}
+            className="nav-language"
           >
             {c.brand.localeShort}
           </Link>
-
           <Link
-            href={`/${locale}/contact`}
-            className={[
-              "btn hidden !py-2.5 !text-sm sm:inline-flex",
-              onDark ? "btn-wine" : "btn-primary",
-            ].join(" ")}
+            href={`/${locale}/brochure`}
+            className="nav-link hidden items-center gap-2 xl:flex"
           >
-            {c.nav.cta}
+            <span aria-hidden>↓</span>
+            {t.nav.brochure}
+          </Link>
+          <Link
+            href={`/${locale}/request-proposal`}
+            onClick={close}
+            className={`btn hidden !px-5 !py-3 !text-xs sm:inline-flex ${onDark ? "btn-wine" : "btn-primary"}`}
+          >
+            {t.nav.proposal}
             <ArrowRight className="h-3.5 w-3.5 rtl:-scale-x-100" />
           </Link>
-
           <button
             ref={menuButton}
             type="button"
-            onClick={() => setOpen((v) => !v)}
+            onClick={() => {
+              setOpen((v) => !v);
+              setCompanyOpen(false);
+            }}
             aria-expanded={open}
             aria-controls="mobile-navigation"
             aria-label={open ? c.nav.close : c.nav.menu}
-            className={[
-              "flex h-10 w-10 items-center justify-center rounded-full border transition-colors duration-500 lg:hidden",
-              onDark ? "border-white/25" : "border-line bg-surface/70",
-            ].join(" ")}
+            className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-current/20 xl:hidden"
           >
-            <span className="relative block h-3 w-4">
+            <span aria-hidden className="relative block h-3 w-4">
               <span
-                className={[
-                  "absolute inset-x-0 top-0 h-[1.5px] transition-all duration-300",
-                  onDark ? "bg-white" : "bg-ink",
-                  open ? "translate-y-[5.5px] rotate-45" : "",
-                ].join(" ")}
+                className={`absolute inset-x-0 top-0 h-px bg-current transition-transform ${open ? "translate-y-[5.5px] rotate-45" : ""}`}
               />
               <span
-                className={[
-                  "absolute inset-x-0 bottom-0 h-[1.5px] transition-all duration-300",
-                  onDark ? "bg-white" : "bg-ink",
-                  open ? "-translate-y-[5.5px] -rotate-45" : "",
-                ].join(" ")}
+                className={`absolute inset-x-0 bottom-0 h-px bg-current transition-transform ${open ? "-translate-y-[5.5px] -rotate-45" : ""}`}
               />
             </span>
           </button>
         </div>
       </nav>
-
       <div
         id="mobile-navigation"
+        ref={mobilePanel}
         inert={!open}
         aria-hidden={!open}
-        className={[
-          "overflow-hidden border-t border-line bg-paper transition-[max-height] duration-500 ease-[var(--ease-out-soft)] lg:hidden",
-          open ? "max-h-[70vh]" : "max-h-0 border-t-transparent",
-        ].join(" ")}
+        className={`mobile-navigation border-t border-line bg-paper text-green-950 xl:hidden ${open ? "is-open" : ""}`}
       >
-        <div className="shell flex flex-col gap-1 py-6">
-          {links.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              onClick={() => setOpen(false)}
-              className="border-b border-line-2 py-4 text-lg text-ink transition-colors hover:text-green-700"
-            >
-              {item.label}
-            </Link>
-          ))}
+        <div className="shell pb-8 pt-4">
+          <p className="mb-3 text-sm font-medium text-wine-700">
+            {t.nav.company}
+          </p>
+          <div className="grid gap-1 border-b border-line pb-4 sm:grid-cols-2">
+            {companySections.map((section, i) => (
+              <Link
+                key={section}
+                href={companyHref(locale, section)}
+                onClick={close}
+                className="flex items-center gap-3 rounded-lg px-3 py-3 text-sm hover:bg-green-50"
+              >
+                <span className="font-mono text-[10px] text-ink-3">
+                  0{i + 1}
+                </span>
+                {t.sections[section]}
+              </Link>
+            ))}
+          </div>
+          <div className="grid grid-cols-2 gap-x-6">
+            {links.map((item) => (
+              <Link
+                key={item.path}
+                href={`/${locale}/${item.path}`}
+                onClick={close}
+                className="border-b border-line py-4 text-base"
+              >
+                {item.label}
+              </Link>
+            ))}
+          </div>
           <Link
-            href={`/${locale}/contact`}
-            onClick={() => setOpen(false)}
-            className="btn btn-primary mt-5 w-full"
+            href={`/${locale}/brochure`}
+            onClick={close}
+            className="mt-5 flex items-center justify-between rounded-xl border border-line p-4 text-sm"
           >
-            {c.nav.cta}
+            {t.nav.brochure}
+            <span aria-hidden>↓</span>
+          </Link>
+          <Link
+            href={`/${locale}/request-proposal`}
+            onClick={close}
+            className="btn btn-primary mt-3 w-full"
+          >
+            {t.nav.proposal}
             <ArrowRight className="h-4 w-4 rtl:-scale-x-100" />
           </Link>
         </div>

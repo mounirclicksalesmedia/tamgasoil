@@ -11,12 +11,14 @@ type Status = "idle" | "sending" | "sent" | "error" | "unavailable";
 export default function ContactForm({
   k,
   locale,
+  initialReason,
 }: {
   k: PagesContent["contact"];
   locale: Locale;
+  initialReason?: string;
 }) {
   const [status, setStatus] = useState<Status>("idle");
-  const [reason, setReason] = useState(k.reasons[0]);
+  const [reason, setReason] = useState(initialReason && k.reasons.includes(initialReason) ? initialReason : k.reasons[0]);
   const generalEnquiry = k.reasons.indexOf(reason) >= 8;
 
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {

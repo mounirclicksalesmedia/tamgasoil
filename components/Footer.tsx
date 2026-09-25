@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { companyHref, companySections, getCorporate } from "@/lib/corporate";
 import type { PagesContent, SiteContent } from "@/lib/content";
 import type { Locale } from "@/lib/i18n";
 import { otherLocale } from "@/lib/i18n";
@@ -14,13 +15,17 @@ export default function Footer({
   locale: Locale;
 }) {
   const f = c.footer;
+  const t = getCorporate(locale);
   const alt = otherLocale(locale);
   const links = [
     { label: p.nav.home, href: `/${locale}` },
-    { label: p.nav.about, href: `/${locale}/about` },
-    { label: p.nav.services, href: `/${locale}/solutions` },
-    { label: p.nav.blog, href: `/${locale}/blog` },
-    { label: p.nav.contact, href: `/${locale}/contact` },
+    { label: t.nav.company, href: `/${locale}/company` },
+    { label: t.nav.services, href: `/${locale}/services` },
+    { label: t.nav.agreements, href: `/${locale}/agreements` },
+    { label: t.nav.news, href: `/${locale}/news` },
+    { label: t.nav.contact, href: `/${locale}/contact` },
+    { label: t.nav.brochure, href: `/${locale}/brochure` },
+    { label: t.nav.proposal, href: `/${locale}/request-proposal` },
   ];
 
   return (
@@ -28,7 +33,11 @@ export default function Footer({
       <div className="shell py-16 md:py-20">
         <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr_1fr]">
           <div>
-            <Link href={`/${locale}`} aria-label={c.brand.fullName} className="inline-block transition-opacity hover:opacity-80">
+            <Link
+              href={`/${locale}`}
+              aria-label={c.brand.fullName}
+              className="inline-block transition-opacity hover:opacity-80"
+            >
               <Logo className="h-auto w-[280px] max-w-full" onDark />
             </Link>
             <p className="mt-6 max-w-sm text-[0.9375rem] leading-[1.7] text-white/55">
@@ -57,19 +66,19 @@ export default function Footer({
             </ul>
           </nav>
 
-          <nav aria-label={f.legalLabel}>
+          <nav aria-label={t.nav.company}>
             <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-white/35">
-              {f.legalLabel}
+              {t.nav.company}
             </p>
             <ul className="mt-5 space-y-3">
-              {f.links.map((link) => (
-                <li key={link.label}>
-                  <a
-                    href={link.href}
+              {companySections.map((section) => (
+                <li key={section}>
+                  <Link
+                    href={companyHref(locale, section)}
                     className="text-[0.9375rem] text-white/65 transition-colors hover:text-white"
                   >
-                    {link.label}
-                  </a>
+                    {t.sections[section]}
+                  </Link>
                 </li>
               ))}
               <li>

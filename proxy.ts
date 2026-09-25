@@ -32,14 +32,6 @@ export const proxy = auth((request) => {
 function localize(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  // "Services" became "Solutions" on 2026-09-20; keep the old path alive.
-  const legacy = pathname.match(/^\/(en|ar)\/services\/?$/);
-  if (legacy) {
-    const url = request.nextUrl.clone();
-    url.pathname = `/${legacy[1]}/solutions`;
-    return NextResponse.redirect(url, 308);
-  }
-
   const hasLocale = locales.some(
     (l) => pathname === `/${l}` || pathname.startsWith(`/${l}/`),
   );

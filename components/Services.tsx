@@ -20,7 +20,7 @@ export default function Services({ c, locale }: { c: SiteContent; locale: Locale
         </div>
         <div className="mt-12 grid grid-cols-2 gap-4 sm:gap-8 md:gap-10">
           {s.items.slice(0, 2).map((item, i) => (
-            <Link key={item.no} href={`/${locale}/solutions#solution-${String(i + 1).padStart(2, "0")}`} className="reveal group block">
+            <Link key={item.no} href={`/${locale}/services#solution-${String(i + 1).padStart(2, "0")}`} className="reveal group block">
               <div className="relative aspect-[3/2] overflow-hidden rounded-2xl bg-green-100">
                 <Image src={i === 0 ? "/media/control-room.webp" : "/media/services/svc-02.jpg"} alt="" fill sizes="(min-width: 1280px) 600px, 45vw" className="object-cover transition-transform duration-700 group-hover:scale-[1.035]" />
                 <span className="absolute start-3 top-3 rounded-full bg-paper px-2 py-1 font-mono text-[10px] sm:start-5 sm:top-5 sm:px-3 sm:py-1.5 sm:text-xs text-wine-700">{item.no}</span>
@@ -35,7 +35,7 @@ export default function Services({ c, locale }: { c: SiteContent; locale: Locale
         </div>
         <div className="mt-10 grid grid-cols-2 gap-x-5 sm:mt-14 sm:gap-x-10">
           {s.items.slice(2).map((item, i) => (
-            <Link key={item.no} href={`/${locale}/solutions#solution-${String(i + 3).padStart(2, "0")}`} className="reveal group border-t border-line py-7">
+            <Link key={item.no} href={`/${locale}/services#solution-${String(i + 3).padStart(2, "0")}`} className="reveal group border-t border-line py-7">
               <div className="flex items-center justify-between gap-4">
                 <span className="font-mono text-xs text-wine-700">{item.no}</span>
                 <ArrowRight className="h-4 w-4 text-green-700 transition-transform group-hover:translate-x-1 rtl:-scale-x-100" />

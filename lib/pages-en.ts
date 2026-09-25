@@ -9,10 +9,10 @@
 export const pagesEn = {
   nav: {
     home: "Home",
-    about: "About",
-    services: "Solutions",
-    blog: "Insights",
-    contact: "Contact",
+    about: "About TAM",
+    services: "Services",
+    blog: "News",
+    contact: "Contact us",
   },
 
   leadBand: {
@@ -88,12 +88,12 @@ export const pagesEn = {
 
   services: {
     meta: {
-      title: "Solutions — Tank Cleaning, Recovery & Asset Integrity | TAM",
+      title: "Services — Tank Cleaning, Recovery & Asset Integrity | TAM",
       description:
         "Tank cleaning and sludge treatment, hydrocarbon recovery, decontamination and degassing, API 653 inspection support, flow assurance, coating, preventive maintenance and environmental remediation.",
     },
     hero: {
-      eyebrow: "Solutions",
+      eyebrow: "Services",
       title: "One partner across the tank lifecycle.",
       lede: "Eight solutions that cover a storage tank from the sludge at the bottom of it to the coating on the shell — and the lines, vessels and separators around it.",
     },
@@ -179,7 +179,7 @@ export const pagesEn = {
 
   blog: {
     meta: {
-      title: "Insights — Tank Integrity & Recovery | TAM",
+      title: "News & perspectives — Tank Integrity & Recovery | TAM",
       description:
         "Notes on tank cleaning economics, non-entry methods, API standards and asset integrity in the Gulf, from TAM for Oil & Gas Services.",
     },
@@ -194,10 +194,10 @@ export const pagesEn = {
     readMore: "Read",
     minRead: "min read",
     byLabel: "By",
-    backToBlog: "All insights",
+    backToBlog: "All news & perspectives",
     draftNotice:
       "Sample article — pending technical review and client sign-off before publication.",
-    searchLabel: "Search insights",
+    searchLabel: "Search news & articles",
     searchPlaceholder: "Search a topic or keyword…",
     emptyTitle: "No articles found",
     emptyBody: "Try a different keyword or explore another topic.",

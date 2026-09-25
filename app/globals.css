@@ -342,3 +342,44 @@ a:focus-visible, button:focus-visible {
   .hero-video { object-position: 65% 50%; }
   .hero-scrim, [dir="rtl"] .hero-scrim { background: linear-gradient(180deg, rgba(5,33,26,.65), rgba(5,33,26,.54) 48%, rgba(5,33,26,.83)); }
 }
+
+/* Corporate navigation and editorial pages */
+.nav-link { position: relative; padding-block: .65rem; font-size: .8125rem; white-space: nowrap; opacity: .78; transition: opacity .2s; }
+.nav-link:hover,.nav-link:focus-visible,.nav-link.is-active { opacity: 1; }
+.nav-link.is-active::after { content: ''; position: absolute; bottom: .1rem; inset-inline: 0; height: 2px; background: currentColor; border-radius: 4px; }
+.nav-language { display: grid; place-items: center; width: 40px; height: 40px; flex-shrink: 0; border: 1px solid currentColor; border-color: color-mix(in srgb, currentColor 22%, transparent); border-radius: 50%; font-size: 11px; }
+.nav-chevron { width: 6px; height: 6px; border-right: 1px solid currentColor; border-bottom: 1px solid currentColor; transform: rotate(45deg); transition: transform .2s; }
+.nav-chevron.is-open { transform: rotate(225deg); }
+.company-dropdown { position: absolute; top: calc(100% + 12px); inset-inline-start: -18px; width: 340px; border: 1px solid var(--color-line); background: var(--color-paper); padding: 12px; border-radius: 20px; box-shadow: 0 20px 60px #05211a25; animation: corporate-enter .2s both; }
+.mobile-navigation { max-height: 0; visibility: hidden; overflow-y: auto; overscroll-behavior: contain; transition: max-height .3s, visibility .3s; }
+.mobile-navigation.is-open { max-height: calc(100dvh - 80px); visibility: visible; }
+.modern-card { border: 1px solid var(--color-line); border-radius: 24px; background: var(--color-paper); box-shadow: 0 3px 10px #05211a03; transition: transform .3s, box-shadow .3s, border-color .3s; }
+a.modern-card:hover,.service-card:hover { transform: translateY(-5px); border-color: #2a665648; box-shadow: 0 20px 40px #05211a0c; }
+.card-arrow { display: grid; place-items: center; border: 1px solid var(--color-line); width: 40px; height: 40px; border-radius: 50%; transition: background .25s, color .25s; }
+a.modern-card:hover .card-arrow { background: var(--color-green-800); color: white; }
+.card-photo { transition: transform .7s var(--ease-out-soft); }
+.service-card:hover .card-photo { transform: scale(1.035); }
+.company-strategy-card { background: linear-gradient(120deg, var(--color-green-50), var(--color-paper)); }
+.strategy-number { font-size: 3.5rem; font-weight: 300; line-height: 1; color: var(--color-green-300); }
+.leadership-panel { position: relative; overflow: hidden; border-radius: 24px; background: var(--color-green-950); padding: clamp(2rem,4vw,3rem); }
+.leadership-lines { position: absolute; width: 380px; height: 380px; border: 1px solid #ffffff15; border-radius: 50%; top: -80px; inset-inline-end: -160px; box-shadow: 0 0 0 35px #ffffff05,0 0 0 70px #ffffff05,0 0 0 105px #ffffff05; }
+.page-cta { position: relative; overflow: hidden; background: var(--color-green-950); }
+.page-cta::before { content: ''; position: absolute; inset-inline-end: -100px; top: -140px; width: 500px; height: 500px; border: 1px solid #ffffff16; border-radius: 50%; box-shadow: 0 0 0 50px #ffffff05,0 0 0 100px #ffffff04; }
+.service-details summary::-webkit-details-marker { display: none; }
+.details-plus { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: var(--color-green-50); font-size: 22px; transition: transform .3s; }
+.service-details[open] .details-plus { transform: rotate(45deg); }
+.service-details[open] .scope-content { animation: corporate-enter .3s both; }
+.company-tabs .shell { scrollbar-width: thin; }
+#enquiry { scroll-margin-top: 104px; }
+@keyframes corporate-enter { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+.corporate-hero-copy > * { animation: corporate-enter .65s both; }
+.corporate-hero-copy > :nth-child(2) { animation-delay: .07s; }
+.corporate-hero-copy > :nth-child(3) { animation-delay: .14s; }
+.corporate-hero-copy > :nth-child(4) { animation-delay: .21s; }
+@media(prefers-reduced-motion:reduce) { .modern-card,.card-photo { transition: none; } a.modern-card:hover,.service-card:hover { transform: none; } .corporate-hero-copy > *, .scope-content,.company-dropdown { animation: none !important; } }
+.brochure-stage { perspective: 1000px; }
+.brochure-cover { transform: rotate(-4deg) rotateY(8deg); transition: transform .6s var(--ease-out-soft); }
+.brochure-stage:hover .brochure-cover { transform: rotate(0) rotateY(0); }
+[dir="rtl"] .brochure-cover { transform: rotate(4deg) rotateY(-8deg); }
+[dir="rtl"] .brochure-stage:hover .brochure-cover { transform: rotate(0) rotateY(0); }
+@media(prefers-reduced-motion:reduce) { .brochure-cover { transform: none !important; transition: none; } }

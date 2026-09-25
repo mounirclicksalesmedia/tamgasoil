@@ -43,3 +43,7 @@ next-env.d.ts
 
 # keep the template; real values live in .env / .env.local (ignored above)
 !.env.example
+
+# Intermediate brochure exports and visual checks; published PDFs live in public/downloads.
+/tmp/pdfs/
+/output/pdf/

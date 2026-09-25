@@ -111,7 +111,7 @@ export const ar: SiteContent = {
   },
 
   services: {
-    eyebrow: "الحلول",
+    eyebrow: "الخدمات",
     heading: "شريك واحد عبر دورة حياة الخزان.",
     items: [
       {

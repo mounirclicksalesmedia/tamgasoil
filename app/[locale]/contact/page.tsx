@@ -71,9 +71,9 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
             <h2 className="display-2 max-w-2xl text-green-950">{k.helpHeading}</h2>
             <p className="lede max-w-md">{k.helpIntro}</p>
           </div>
-          <div className="mt-14 grid gap-x-12 md:grid-cols-2 lg:gap-x-20">
+          <div className="mt-14 grid gap-5 md:grid-cols-2 lg:gap-x-20">
             {k.cards.map((card, i) => (
-              <article key={card.title} className="reveal flex gap-5 border-t border-line py-8">
+              <article key={card.title} className="modern-card reveal flex gap-5 p-7">
                 <span className="pt-1 font-mono text-xs text-wine-700">{String(i + 1).padStart(2, "0")}</span>
                 <div>
                   <h3 className="text-xl font-medium tracking-[-0.02em]">{card.title}</h3>

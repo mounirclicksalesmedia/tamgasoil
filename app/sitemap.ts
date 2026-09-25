@@ -3,7 +3,7 @@ import { getPages } from "@/lib/content";
 import { locales } from "@/lib/i18n";
 
 const SITE_URL = "https://tamoilgas.com";
-const PAGES = ["", "/about", "/solutions", "/blog", "/contact"] as const;
+const PAGES = ["", "/company", "/company/chairman", "/company/managing-director", "/company/coo", "/company/strategy", "/services", "/agreements", "/news", "/contact", "/brochure", "/request-proposal"] as const;
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const entries: MetadataRoute.Sitemap = [];
@@ -13,7 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       entries.push({
         url: `${SITE_URL}/${locale}${page}`,
         lastModified: new Date(),
-        changeFrequency: page === "/blog" ? "weekly" : "monthly",
+        changeFrequency: page === "/news" ? "weekly" : "monthly",
         priority: page === "" ? 1 : 0.8,
         alternates: {
           languages: {
@@ -26,14 +26,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     for (const post of getPages(locale).blog.posts) {
       entries.push({
-        url: `${SITE_URL}/${locale}/blog/${post.slug}`,
+        url: `${SITE_URL}/${locale}/news/${post.slug}`,
         lastModified: new Date(post.date),
         changeFrequency: "yearly",
         priority: 0.6,
         alternates: {
           languages: {
-            en: `${SITE_URL}/en/blog/${post.slug}`,
-            ar: `${SITE_URL}/ar/blog/${post.slug}`,
+            en: `${SITE_URL}/en/news/${post.slug}`,
+            ar: `${SITE_URL}/ar/news/${post.slug}`,
           },
         },
       });

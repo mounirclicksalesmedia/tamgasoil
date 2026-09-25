@@ -38,7 +38,7 @@ export default function PageHero({
           />
         </>
       )}
-      <div className="shell relative pt-[150px] pb-20 md:pt-[180px] md:pb-24">
+      <div className="corporate-hero-copy shell relative pt-[150px] pb-20 md:pt-[180px] md:pb-24">
         <p className="eyebrow eyebrow-light text-white/55">{eyebrow}</p>
         <h1 className="display-2 mt-7 max-w-4xl text-balance text-white">{title}</h1>
         <p className="mt-7 max-w-[38rem] text-[1.0625rem] leading-[1.7] text-white/65 md:text-[1.15rem]">

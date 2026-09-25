@@ -109,7 +109,7 @@ export const en = {
   },
 
   services: {
-    eyebrow: "Solutions",
+    eyebrow: "Services",
     heading: "One partner across the tank lifecycle.",
     items: [
       {
