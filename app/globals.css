@@ -383,3 +383,10 @@ a.modern-card:hover .card-arrow { background: var(--color-green-800); color: whi
 [dir="rtl"] .brochure-cover { transform: rotate(4deg) rotateY(-8deg); }
 [dir="rtl"] .brochure-stage:hover .brochure-cover { transform: rotate(0) rotateY(0); }
 @media(prefers-reduced-motion:reduce) { .brochure-cover { transform: none !important; transition: none; } }
+
+/* Leadership portraits retain the supplied photographs; framing happens in layout. */
+.leadership-photo { transition: transform .65s var(--ease-out-soft); }
+.leadership-profile-link:hover .leadership-photo { transform: scale(1.025); }
+.leadership-profile-link .leadership-portrait { transition: box-shadow .3s, border-color .3s; }
+.leadership-profile-link:hover .leadership-portrait { border-color: #2a665648; box-shadow: 0 16px 40px #05211a10; }
+@media(prefers-reduced-motion:reduce) { .leadership-photo,.leadership-profile-link .leadership-portrait { transition: none; } .leadership-profile-link:hover .leadership-photo { transform: none; } }

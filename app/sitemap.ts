@@ -3,7 +3,21 @@ import { getPages } from "@/lib/content";
 import { locales } from "@/lib/i18n";
 
 const SITE_URL = "https://tamoilgas.com";
-const PAGES = ["", "/company", "/company/chairman", "/company/managing-director", "/company/coo", "/company/strategy", "/services", "/agreements", "/news", "/contact", "/brochure", "/request-proposal"] as const;
+const PAGES = [
+  "",
+  "/company",
+  "/company/chairman",
+  "/company/managing-director",
+  "/company/ceo",
+  "/company/coo",
+  "/company/strategy",
+  "/services",
+  "/agreements",
+  "/news",
+  "/contact",
+  "/brochure",
+  "/request-proposal",
+] as const;
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const entries: MetadataRoute.Sitemap = [];

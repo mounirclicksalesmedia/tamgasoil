@@ -4,8 +4,8 @@ The public navigation is bilingual: Company, Services, Agreements, News, Contact
 
 ## Routes
 
-- `/[locale]/company`: company overview and links to all five company sections.
-- `/[locale]/company/chairman`, `/managing-director`, `/coo`: dedicated leadership message layouts.
+- `/[locale]/company`: company overview and links to the company sections and leadership profiles.
+- `/[locale]/company/chairman`, `/managing-director`, `/ceo`, `/coo`: dedicated leadership message layouts.
 - `/[locale]/company/strategy`: strategic priorities and the existing growth roadmap.
 - `/[locale]/services`: searchable service cards with native expandable scope details.
 - `/[locale]/agreements`: the existing Micro-Bac technology relationship and collaboration contact link.
@@ -18,7 +18,7 @@ The public navigation is bilingual: Company, Services, Agreements, News, Contact
 
 ## Content to supply
 
-Official leadership messages, names and portraits have not been provided. Those three pages intentionally state that the message is coming soon, rather than attributing invented quotes to officers. Add approved copy to `lib/corporate.ts` and the leadership branch in `components/CompanyPages.tsx` when available.
+The user supplied the portraits and names of Yahya Abu Najm (Managing Director, TAM Holding Group) and Eng. Yasir Taj Din (Chief Operating Officer). These are stored unchanged under `public/media/leadership` and framed with CSS. Their localized details are in `lib/leadership.ts`. The CEO and Chairman pages share a clearly labelled temporary generated avatar with the Qatar flag and no invented name. They remain separate roles and pages. Official leadership messages are still pending and are not fabricated. Add approved messages in the leadership branch of `components/CompanyPages.tsx` when available.
 
 No new signed agreements, terms, dates or partner claims have been invented. The Agreements page uses the existing technology-source description. Existing news articles retain their draft notice on article pages.
 

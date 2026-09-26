@@ -4,6 +4,7 @@ export const companySections = [
   "overview",
   "chairman",
   "managing-director",
+  "ceo",
   "coo",
   "strategy",
 ] as const;
@@ -23,6 +24,7 @@ const en = {
     overview: "Company overview",
     chairman: "Chairman’s message",
     "managing-director": "Managing Director’s message",
+    ceo: "Chief Executive Officer’s message",
     coo: "Chief Operating Officer’s message",
     strategy: "Strategic direction",
   },
@@ -39,6 +41,7 @@ const en = {
       "The Chairman’s perspective on TAM’s direction and long-term ambitions.",
     "managing-director":
       "The Managing Director’s perspective on partnerships and building the business.",
+    ceo: "The Chief Executive Officer’s message will be available here.",
     coo: "The Chief Operating Officer’s perspective on delivery, safety and operational discipline.",
     strategy:
       "A clear path from market entry to a regional platform for asset integrity.",
@@ -137,6 +140,7 @@ const ar: Copy = {
     overview: "نبذة تعريفية",
     chairman: "كلمة رئيس مجلس الإدارة",
     "managing-director": "كلمة العضو المنتدب",
+    ceo: "كلمة الرئيس التنفيذي",
     coo: "كلمة الرئيس التنفيذي للعمليات",
     strategy: "التوجه الاستراتيجي",
   },
@@ -152,6 +156,7 @@ const ar: Copy = {
     chairman:
       "رؤية رئيس مجلس الإدارة لتوجهات الشركة وطموحاتها على المدى البعيد.",
     "managing-director": "رؤية العضو المنتدب لتطوير الأعمال وبناء الشراكات.",
+    ceo: "ستُنشر كلمة الرئيس التنفيذي هنا عند توفرها.",
     coo: "رؤية الرئيس التنفيذي للعمليات للتنفيذ والسلامة والانضباط التشغيلي.",
     strategy: "مسار واضح من دخول السوق إلى بناء منصة إقليمية لسلامة الأصول.",
   },

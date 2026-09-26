@@ -12,6 +12,8 @@ import { ArrowRight } from "./Icons";
 import PageHero from "./PageHero";
 import Growth from "./Growth";
 import PageCta from "./PageCta";
+import LeadershipPortrait from "./LeadershipPortrait";
+import { getLeader, leadershipSections } from "@/lib/leadership";
 
 export default function CompanyPages({
   locale,
@@ -23,6 +25,7 @@ export default function CompanyPages({
   const t = getCorporate(locale),
     c = getContent(locale),
     a = getPages(locale).about;
+  const person = getLeader(locale, section);
   const isOverview = section === "overview",
     isStrategy = section === "strategy";
   return (
@@ -114,35 +117,53 @@ export default function CompanyPages({
           <section className="section bg-surface">
             <div className="shell">
               <div className="reveal mb-10 flex items-end justify-between gap-5">
-                <h2 className="display-2">{t.explore}</h2>
-                <span className="font-mono text-xs text-ink-3">01 — 05</span>
+                <h2 className="display-2">{t.leadership}</h2>
+                <span className="font-mono text-xs text-ink-3">TAM</span>
               </div>
               <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-                {companySections.map((key, i) => (
+                {leadershipSections.map((key) => (
                   <Link
                     key={key}
                     href={companyHref(locale, key)}
-                    className={`reveal modern-card flex min-h-[250px] flex-col p-7 md:p-9 ${key === "strategy" ? "md:col-span-2 company-strategy-card" : ""}`}
+                    className="reveal leadership-profile-link block rounded-3xl focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-green-700"
                   >
-                    <div className="flex items-center justify-between">
-                      <span className="font-mono text-xs text-wine-700">
-                        0{i + 1}
-                      </span>
-                      <span className="card-arrow">
-                        <ArrowRight className="h-4 w-4 rtl:-scale-x-100" />
-                      </span>
-                    </div>
-                    <h3 className="mt-8 text-xl font-medium leading-snug">
+                    <LeadershipPortrait locale={locale} section={key} />
+                    <span className="mt-5 flex items-center gap-3 px-2 text-sm text-green-800">
                       {t.sections[key]}
-                    </h3>
-                    <p className="mt-4 max-w-lg text-sm leading-relaxed text-ink-2">
-                      {t.sectionIntros[key]}
-                    </p>
-                    <span className="mt-auto pt-7 text-xs font-medium text-green-700">
-                      {t.discover}
+                      <ArrowRight className="h-4 w-4 rtl:-scale-x-100" />
                     </span>
                   </Link>
                 ))}
+              </div>
+              <h2 className="display-3 reveal mb-8 mt-20">{t.explore}</h2>
+              <div className="grid gap-5 md:grid-cols-3">
+                {companySections
+                  .filter((key) => !leadershipSections.some((section) => section === key))
+                  .map((key, i) => (
+                    <Link
+                      key={key}
+                      href={companyHref(locale, key)}
+                      className={`reveal modern-card flex min-h-[250px] flex-col p-7 md:p-9 ${key === "strategy" ? "company-strategy-card" : ""}`}
+                    >
+                      <div className="flex items-center justify-between">
+                        <span className="font-mono text-xs text-wine-700">
+                          0{i + 1}
+                        </span>
+                        <span className="card-arrow">
+                          <ArrowRight className="h-4 w-4 rtl:-scale-x-100" />
+                        </span>
+                      </div>
+                      <h3 className="mt-8 text-xl font-medium leading-snug">
+                        {t.sections[key]}
+                      </h3>
+                      <p className="mt-4 max-w-lg text-sm leading-relaxed text-ink-2">
+                        {t.sectionIntros[key]}
+                      </p>
+                      <span className="mt-auto pt-7 text-xs font-medium text-green-700">
+                        {t.discover}
+                      </span>
+                    </Link>
+                  ))}
               </div>
             </div>
           </section>
@@ -170,22 +191,37 @@ export default function CompanyPages({
       ) : (
         <section className="section">
           <div className="shell grid gap-8 lg:grid-cols-[.7fr_1.3fr]">
-            <div className="reveal leadership-panel">
-              <div aria-hidden className="leadership-lines" />
-              <p className="eyebrow eyebrow-light relative text-green-300">
-                {t.leadership}
-              </p>
-              <span
-                aria-hidden
-                className="relative my-12 block text-[5rem] font-light tracking-tighter text-white/15"
-              >
-                TAM
-              </span>
-              <h2 className="relative max-w-xs text-2xl leading-relaxed text-white">
-                {t.sections[section]}
-              </h2>
-            </div>
+            {person ? (
+              <div className="reveal self-start">
+                <LeadershipPortrait locale={locale} section={section} />
+              </div>
+            ) : (
+              <div className="reveal leadership-panel">
+                <div aria-hidden className="leadership-lines" />
+                <p className="eyebrow eyebrow-light relative text-green-300">
+                  {t.leadership}
+                </p>
+                <span
+                  aria-hidden
+                  className="relative my-12 block text-[5rem] font-light tracking-tighter text-white/15"
+                >
+                  TAM
+                </span>
+                <h2 className="relative max-w-xs text-2xl leading-relaxed text-white">
+                  {t.sections[section]}
+                </h2>
+              </div>
+            )}
             <article className="modern-card reveal flex flex-col justify-center p-8 md:p-14">
+              {person && (
+                <div className="mb-8 border-b border-line pb-8">
+                  <p className="eyebrow text-wine-700">{t.leadership}</p>
+                  <h2 className="display-3 mt-5">{person.name}</h2>
+                  <p className="mt-4 text-lg leading-relaxed text-ink-2">
+                    {person.role}
+                  </p>
+                </div>
+              )}
               <span className="tag w-fit">{t.pendingBadge}</span>
               <h2 className="display-3 mt-8">{t.pendingTitle}</h2>
               <p className="lede mt-5 max-w-xl">{t.pendingBody}</p>
