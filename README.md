@@ -37,6 +37,23 @@ npm run dev                    # http://localhost:3000/admin
 - Going live on tamoilgas.com = add the domain to this Vercel project once
   GoDaddy access arrives. Nothing else changes.
 
+## Production server (VPS)
+
+Spaceship VPS `104.207.76.166` (Ubuntu 24.04, 2 vCPU / 4 GB + 3 GB swap). SSH listens on **port 22022**, key-based (`ssh tam-spaceship` with the alias in `~/.ssh/config`).
+
+| Piece | Where |
+| --- | --- |
+| App | `/opt/tam/app` (clone of this repo), user `tam`, PM2 process `tam` on `127.0.0.1:3000`, started on boot by `pm2-tam.service` |
+| Settings | `/opt/tam/app/.env` (600, not in git): `DATABASE_URL`, `AUTH_SECRET`, `AUTH_TRUST_HOST`, optional `RESEND_API_KEY` / `CONTACT_TO` |
+| Database | PostgreSQL 17, local database `tam` owned by role `tam` |
+| Web | Nginx `/etc/nginx/sites-available/tam` → port 3000; UFW allows 22022, 80, 443 only |
+
+Deploy the latest `main`: `ssh tam-spaceship 'sudo -iu tam /opt/tam/app/scripts/deploy-vps.sh'`.
+
+Copy the database from Neon (run as root on the server; prompts for the Neon URL, hidden): `bash /opt/tam/app/scripts/migrate-from-neon.sh`. Run it once to bring the data over and again just before the DNS switch so late inquiries are not lost. Never run `db:seed` on the server.
+
+After `tamoilgas.com` points to the server: set `server_name tamoilgas.com www.tamoilgas.com;` in the Nginx site, then `certbot --nginx -d tamoilgas.com -d www.tamoilgas.com`.
+
 ## The portal — `/admin`
 
 Everything an editor changes lives in Postgres; the TS content files are now
