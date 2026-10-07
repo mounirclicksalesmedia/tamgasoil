@@ -14,6 +14,13 @@ export default function Hero({ c }: { c: SiteContent }) {
         preload="metadata"
         poster="/media/hero-poster.jpg"
         aria-hidden="true"
+        tabIndex={-1}
+        // Background video: suppress browser overlays (Edge/Chrome picture-in-picture,
+        // casting and media buttons appear on hover on Windows).
+        disablePictureInPicture
+        disableRemotePlayback
+        controls={false}
+        controlsList="nodownload nofullscreen noremoteplayback noplaybackrate"
       >
         <source src="/media/hero-loop.mp4" type="video/mp4" />
       </video>

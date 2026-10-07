@@ -474,3 +474,11 @@ a.modern-card:hover .card-arrow { background: var(--color-green-800); color: whi
 @media (min-width: 768px) { .partner-link { min-width: 5rem; } }
 [dir="rtl"] .loop-topline, [dir="rtl"] .compare-head, [dir="rtl"] .case-head { font-family: var(--font-sans); text-transform: none; }
 @media (max-width: 1023px) { .solub-step { min-height: 46vh; } }
+
+/* Background video: never interactive, never show native media controls/overlays */
+.hero-video { pointer-events: none; user-select: none; }
+.hero-video::-webkit-media-controls,
+.hero-video::-webkit-media-controls-panel,
+.hero-video::-webkit-media-controls-overlay-play-button,
+.hero-video::-webkit-media-controls-start-playback-button,
+.hero-video::-webkit-media-controls-enclosure { display: none !important; -webkit-appearance: none; }
