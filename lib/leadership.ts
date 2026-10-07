@@ -84,8 +84,8 @@ const profiles: Record<LeadershipSection, Profile> = {
     },
   },
   coo: {
-    image: "/media/leadership/yasir-taj-din.jpg",
-    position: "50% 40%",
+    image: "/media/leadership/yasser-tag-eldin-office.webp",
+    position: "50% 30%",
     decorative: false,
     en: {
       name: "Eng. Yasser Tag Eldin",
