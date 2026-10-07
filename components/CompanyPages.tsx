@@ -11,7 +11,6 @@ import type { Locale } from "@/lib/i18n";
 import { getProfile } from "@/lib/profile";
 import { ArrowRight } from "./Icons";
 import PageHero from "./PageHero";
-import Growth from "./Growth";
 import PageCta from "./PageCta";
 import LeadershipPortrait from "./LeadershipPortrait";
 import { getLeader, isLeadershipSection, leadershipSections } from "@/lib/leadership";
@@ -277,7 +276,6 @@ export default function CompanyPages({
               </ol>
             </div>
           </section>
-          <Growth c={c} />
         </>
       ) : person ? (
         <section className="section">

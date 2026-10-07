@@ -12,7 +12,6 @@ import Technology from "@/components/Technology";
 import Statement from "@/components/Statement";
 import Markets from "@/components/Markets";
 import Hse from "@/components/Hse";
-import Growth from "@/components/Growth";
 import Contact from "@/components/Contact";
 
 export default async function HomePage({
@@ -37,7 +36,6 @@ export default async function HomePage({
         <Statement c={c} />
         <Markets c={c} />
         <Hse c={c} />
-        <Growth c={c} />
         <Contact c={c} locale={typed} />
     </main>
   );
