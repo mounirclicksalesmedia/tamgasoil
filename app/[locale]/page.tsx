@@ -33,7 +33,7 @@ export default async function HomePage({
         <Pillars c={c} />
         <Process c={c} />
         <Services c={c} locale={typed} />
-        <Technology c={c} />
+        <Technology c={c} locale={typed} />
         <Statement c={c} />
         <Markets c={c} />
         <Hse c={c} />

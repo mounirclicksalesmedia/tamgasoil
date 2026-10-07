@@ -1,14 +1,15 @@
 # Corporate website pages
 
-The public navigation is bilingual: Company, Services, Agreements, News, Contact, Brochure and Request a proposal.
+The public navigation is bilingual: Company, Services, Technology, Agreements, News, Contact, Brochure and Request a proposal.
 
 ## Routes
 
 - `/[locale]/company`: company overview and links to the company sections and leadership profiles.
-- `/[locale]/company/chairman`, `/managing-director`, `/ceo`, `/coo`: dedicated leadership message layouts.
-- `/[locale]/company/strategy`: strategic priorities and the existing growth roadmap.
+- `/[locale]/company/general-assembly`, `/board-chairman`, `/coo`: the three leadership messages, in the order and with the titles of the approved company profile. The former `/chairman`, `/managing-director` and `/ceo` addresses redirect permanently (see `next.config.ts`).
+- `/[locale]/company/strategy`: vision, mission, values, strategic objectives and the growth roadmap.
+- `/[locale]/technology`: the technical specifications (how the technology works, work stages, product data, advantages, field results, global operators) with scroll and in-view animations built on `motion` and SVG. All animations fall back to their final state under `prefers-reduced-motion`.
 - `/[locale]/services`: searchable service cards with native expandable scope details.
-- `/[locale]/agreements`: the existing Micro-Bac technology relationship and collaboration contact link.
+- `/[locale]/agreements`: the Micro-Bac partnership, its record of firsts, strain standards and collaboration contact link.
 - `/[locale]/news` and `/news/[slug]`: the existing editorial content with search, category filters and article cards.
 - `/[locale]/contact`: existing contact page, with updated cards.
 - `/[locale]/brochure`: Arabic and English PDF downloads.
@@ -16,11 +17,16 @@ The public navigation is bilingual: Company, Services, Agreements, News, Contact
 
 `/about` and `/blog` redirect to the new pages. `/solutions` serves the Services page with `/services` canonical metadata, avoiding a loop for visitors who cached the former permanent Services-to-Solutions redirect. Old service anchors remain valid. The obsolete reverse redirect was removed from `proxy.ts`.
 
-## Content to supply
+## Content source
 
-The user supplied the portraits and names of Yahya Abu Najm (Managing Director, TAM Holding Group) and Eng. Yasir Taj Din (Chief Operating Officer). These are stored unchanged under `public/media/leadership` and framed with CSS. Their localized details are in `lib/leadership.ts`. The CEO and Chairman pages share a clearly labelled temporary generated avatar with the Qatar flag and no invented name. They remain separate roles and pages. Official leadership messages are still pending and are not fabricated. Add approved messages in the leadership branch of `components/CompanyPages.tsx` when available.
+Company, leadership, services, partnership and technical copy comes from the client-approved *Company Profile & Technical Brochure* and lives in `lib/profile.ts` (EN/AR, typed so Arabic must match English) and `lib/leadership.ts`. The client asked for these exclusions, which must stay out:
 
-No new signed agreements, terms, dates or partner claims have been invented. The Agreements page uses the existing technology-source description. Existing news articles retain their draft notice on article pages.
+- the "Cost of one tank cleaning" comparison and any cost figures from the case studies;
+- any wording that credits the technology's chairman or founder personally. The operator list credits "the company behind this technology" / «الشركة المطوِّرة لهذه التقنية».
+
+The Chairman of the Shareholders' General Assembly page uses a decorative image of Doha Bay (`qatar-doha-bay.webp`, generated, no people) with the Qatar flag serration drawn in SVG, in place of a portrait. Replace it with an official portrait if one is supplied.
+
+No new signed agreements, terms, dates or partner claims have been invented. Existing news articles retain their draft notice on article pages.
 
 The downloadable PDFs are company overviews prepared from current website copy, not an uploaded official brochure. They are labelled accordingly on the download page and within the documents. Replace files at `public/downloads/tam-company-overview-{en,ar}.pdf` if an official brochure is supplied.
 

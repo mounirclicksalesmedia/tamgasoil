@@ -71,6 +71,7 @@ export const en = {
     whyTam: "Discuss your tank project",
     process: "Plan your tank treatment",
     technology: "Talk to a technical specialist",
+    technologyPage: "See how the technology works",
     markets: "Discuss a project in your market",
   },
 
@@ -113,45 +114,45 @@ export const en = {
     heading: "One partner across the tank lifecycle.",
     items: [
       {
-        no: "01",
-        title: "Tank cleaning & sludge treatment",
-        body: "Crude, fuel, slop and product tanks treated in place with M-1000 hydrocarbon-degrading cultures.",
+        "no": "01",
+        "title": "Zero-entry biological tank cleaning",
+        "body": "In-place treatment of tank bottoms with Para-Bac™ cultures and closed-loop circulation, for fixed and floating-roof tanks."
       },
       {
-        no: "02",
-        title: "Hydrocarbon recovery",
-        body: "Paraffin chains from C16 to C60+ broken down so oil and water separate and the oil goes back to stock.",
+        "no": "02",
+        "title": "Sludge treatment and oil recovery",
+        "body": "Liquefaction of paraffinic sludge so trapped hydrocarbons separate and return to the client as saleable oil."
       },
       {
-        no: "03",
-        title: "Decontamination & degassing",
-        body: "Safe-entry preparation to API 2015 for diesel, fuel oil, lube, jet fuel and gasoline-range residues.",
+        "no": "03",
+        "title": "Emulsion breaking and slop oil treatment",
+        "body": "Biological separation of stable oil and water emulsions into recoverable oil, water and settled solids."
       },
       {
-        no: "04",
-        title: "Inspection support",
-        body: "Tanks prepared and presented for API 653 inspection, with NDT coordinated through your approved inspectors.",
+        "no": "04",
+        "title": "Tank preparation for inspection and repair",
+        "body": "Reduction of sludge, VOCs and LEL ahead of internal inspection, coating and repair, so any entry is shorter and safer."
       },
       {
-        no: "05",
-        title: "Flow assurance & asset integrity",
-        body: "Para-Bac and Corroso-Bac programmes against paraffin, scale and corrosion in lines, vessels and separators.",
+        "no": "05",
+        "title": "Sampling, analysis and treatability studies",
+        "body": "Representative sludge sampling, characterisation and treatment design, supported by Micro-Bac’s laboratory."
       },
       {
-        no: "06",
-        title: "Coating & rehabilitation",
-        body: "Floor and shell repair, lining and coating to return an inspected tank to service life.",
+        "no": "06",
+        "title": "Preventive tank maintenance programmes",
+        "body": "Scheduled treatments that limit bottom build-up between cleanings and preserve working capacity."
       },
       {
-        no: "07",
-        title: "Preventive maintenance",
-        body: "Scheduled dosing and condition monitoring that keeps sludge from building up between turnarounds.",
+        "no": "07",
+        "title": "Production facility treatment",
+        "body": "Paraffin, scale and corrosion control in flowlines, separators and surface equipment with the Para-Bac™ family."
       },
       {
-        no: "08",
-        title: "Environmental remediation",
-        body: "Landfarming, biopiles and contaminated-soil treatment with the M-1000 LF and PAH lines.",
-      },
+        "no": "08",
+        "title": "Pits, lagoons and waste minimisation",
+        "body": "Biological treatment of sludge pits, holding lagoons and oily wastes using M-1000H™ products and nutrients."
+      }
     ],
   },
 

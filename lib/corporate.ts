@@ -2,9 +2,8 @@ import type { Locale } from "./i18n";
 
 export const companySections = [
   "overview",
-  "chairman",
-  "managing-director",
-  "ceo",
+  "general-assembly",
+  "board-chairman",
   "coo",
   "strategy",
 ] as const;
@@ -14,6 +13,7 @@ const en = {
   nav: {
     company: "About TAM",
     services: "Services",
+    technology: "Technology",
     agreements: "Agreements",
     news: "News",
     contact: "Contact us",
@@ -22,10 +22,10 @@ const en = {
   },
   sections: {
     overview: "Company overview",
-    chairman: "Chairman’s message",
-    "managing-director": "Managing Director’s message",
-    ceo: "Chief Executive Officer’s message",
-    coo: "Chief Operating Officer’s message",
+    "general-assembly":
+      "Message from the Chairman of the Shareholders’ General Assembly",
+    "board-chairman": "Message from the Chairman of the Board",
+    coo: "Message from the Chief Operating Officer",
     strategy: "Strategic direction",
   },
   companyTitle: "Built around the life of your assets.",
@@ -37,40 +37,19 @@ const en = {
   company: "About the company",
   sectionIntros: {
     overview: "Our company, our approach and the value we work to recover.",
-    chairman:
-      "The Chairman’s perspective on TAM’s direction and long-term ambitions.",
-    "managing-director":
-      "The Managing Director’s perspective on partnerships and building the business.",
-    ceo: "The Chief Executive Officer’s message will be available here.",
-    coo: "The Chief Operating Officer’s perspective on delivery, safety and operational discipline.",
+    "general-assembly":
+      "Why Tam Holding Group’s shareholders chose specialised energy services, and the support behind the company.",
+    "board-chairman":
+      "How the Board invests: a real market need, a technology that answers it, and partners of proven standing.",
+    coo: "How every Tam project is sampled, designed, monitored and reported, with people kept outside the tank.",
     strategy:
       "A clear path from market entry to a regional platform for asset integrity.",
   },
-  pendingTitle: "A message to follow.",
-  pendingBody:
-    "The official leadership message will be published here when it is available. In the meantime, explore our approach or speak with our team.",
-  pendingBadge: "Message coming soon",
+  messageLabel: "Leadership message",
+  readMessage: "Read the message",
   strategyTitle: "Recover value. Build capability. Grow responsibly.",
   strategyIntro:
     "Our direction connects the value delivered on every tank with the people, technology and local capabilities needed for the next project.",
-  priorities: [
-    {
-      title: "Value from every asset",
-      body: "Make recovery, downtime and total lifecycle cost central to the scope of each project.",
-    },
-    {
-      title: "Safety in the method",
-      body: "Prioritise treatment through existing nozzles and align delivery with the operator’s HSE system.",
-    },
-    {
-      title: "Capability close to the client",
-      body: "Build local crews, engineering knowledge and equipment capability as the business grows.",
-    },
-    {
-      title: "Disciplined regional growth",
-      body: "Develop market by market, with qualification and local requirements addressed before delivery.",
-    },
-  ],
   agreementsTitle: "Working together. Delivering with purpose.",
   agreementsIntro:
     "Explore the technology relationships supporting our approach, and talk to us about opportunities to collaborate.",
@@ -130,6 +109,7 @@ const ar: Copy = {
   nav: {
     company: "عن الشركة",
     services: "الخدمات",
+    technology: "التقنية",
     agreements: "اتفاقيات",
     news: "أخبار",
     contact: "اتصل بنا",
@@ -138,9 +118,8 @@ const ar: Copy = {
   },
   sections: {
     overview: "نبذة تعريفية",
-    chairman: "كلمة رئيس مجلس الإدارة",
-    "managing-director": "كلمة العضو المنتدب",
-    ceo: "كلمة الرئيس التنفيذي",
+    "general-assembly": "كلمة رئيس الجمعية العمومية للمساهمين",
+    "board-chairman": "كلمة رئيس مجلس الإدارة",
     coo: "كلمة الرئيس التنفيذي للعمليات",
     strategy: "التوجه الاستراتيجي",
   },
@@ -153,38 +132,18 @@ const ar: Copy = {
   company: "عن الشركة",
   sectionIntros: {
     overview: "تعرّف على شركتنا ومنهجيتنا والقيمة التي نعمل على استعادتها.",
-    chairman:
-      "رؤية رئيس مجلس الإدارة لتوجهات الشركة وطموحاتها على المدى البعيد.",
-    "managing-director": "رؤية العضو المنتدب لتطوير الأعمال وبناء الشراكات.",
-    ceo: "ستُنشر كلمة الرئيس التنفيذي هنا عند توفرها.",
-    coo: "رؤية الرئيس التنفيذي للعمليات للتنفيذ والسلامة والانضباط التشغيلي.",
+    "general-assembly":
+      "لماذا اختار مساهمو مجموعة تم القابضة خدمات الطاقة المتخصصة، والدعم الذي تحظى به الشركة.",
+    "board-chairman":
+      "كيف يستثمر مجلس الإدارة: حاجة حقيقية في السوق، وتقنية تلبّيها، وشركاء ذوو مكانة مشهودة.",
+    coo: "كيف يُدار كل مشروع لدى تم: عينات واختبار، ومعالجة مصممة، ومتابعة يومية، ونتائج موثّقة، والعاملون خارج الخزان.",
     strategy: "مسار واضح من دخول السوق إلى بناء منصة إقليمية لسلامة الأصول.",
   },
-  pendingTitle: "كلمة تُنشر قريباً.",
-  pendingBody:
-    "ستُنشر الكلمة الرسمية للإدارة هنا عند توفرها. إلى ذلك الحين، يمكنك التعرّف على منهجيتنا أو التواصل مع فريقنا.",
-  pendingBadge: "الكلمة قريباً",
+  messageLabel: "كلمة القيادة",
+  readMessage: "اقرأ الكلمة",
   strategyTitle: "نستعيد القيمة. نبني القدرات. ننمو بمسؤولية.",
   strategyIntro:
     "يربط توجهنا بين القيمة التي نقدمها في كل خزان وبين الكفاءات والتقنية والقدرات المحلية اللازمة للمشروع القادم.",
-  priorities: [
-    {
-      title: "قيمة من كل أصل",
-      body: "نجعل الاستعادة ومدة التوقف والتكلفة الإجمالية للعمر التشغيلي أساساً لنطاق كل مشروع.",
-    },
-    {
-      title: "السلامة في المنهجية",
-      body: "نعطي الأولوية للمعالجة عبر الفتحات القائمة، ونعمل وفق منظومة السلامة الخاصة بالمشغّل.",
-    },
-    {
-      title: "قدرات قريبة من العميل",
-      body: "نبني فرقاً محلية ومعرفة هندسية وقدرات في المعدات بالتوازي مع نمو الأعمال.",
-    },
-    {
-      title: "نمو إقليمي مدروس",
-      body: "نتوسع سوقاً بعد سوق، مع استيفاء التأهيل والمتطلبات المحلية قبل التنفيذ.",
-    },
-  ],
   agreementsTitle: "نتعاون بهدف. ونعمل بقيمة.",
   agreementsIntro:
     "تعرّف على العلاقات التقنية الداعمة لمنهجيتنا، وتواصل معنا لبحث فرص التعاون.",

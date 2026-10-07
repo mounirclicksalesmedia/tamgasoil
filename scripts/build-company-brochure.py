@@ -69,7 +69,7 @@ for locale,d in DATA.items():
     base(3,t['sections']['strategy'])
     y=text(t['strategyTitle'],42,715,W-84,23,GREEN,True,33)-15
     y=text(t['strategyIntro'],42,y,W-84,11,MUTED,False,19)-22
-    for i,item in enumerate(t['priorities']):
+    for i,item in enumerate(t.get('priorities',[])):
         y=text(f'0{i+1}  /  '+item['title'],42,y,W-84,13,GREEN,True,20)
         y=text(item['body'],42,y-4,W-84,11,MUTED,False,19)-25
     cv.setFillColor(HexColor(GREEN));cv.roundRect(42,83,W-84,85,14,fill=1,stroke=0)

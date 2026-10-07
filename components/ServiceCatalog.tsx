@@ -61,7 +61,11 @@ export default function ServiceCatalog({
             >
               <div className="relative aspect-[16/9] overflow-hidden">
                 <Image
-                  src={`/media/services/svc-${String(item.index + 1).padStart(2, "0")}.jpg`}
+                  src={
+                    item.index === 4
+                      ? "/media/sampling-lab.webp"
+                      : `/media/services/svc-${String(item.index + 1).padStart(2, "0")}.jpg`
+                  }
                   alt=""
                   fill
                   sizes="(min-width:768px) 45vw, 100vw"

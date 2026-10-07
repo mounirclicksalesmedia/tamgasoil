@@ -1,8 +1,9 @@
 import SectionCta from "./SectionCta";
 import Image from "next/image";
 import type { SiteContent } from "@/lib/content";
+import type { Locale } from "@/lib/i18n";
 
-export default function Technology({ c }: { c: SiteContent }) {
+export default function Technology({ c, locale }: { c: SiteContent; locale: Locale }) {
   const t = c.technology;
   return (
     <section id="technology" className="bg-green-950 text-white">
@@ -30,7 +31,11 @@ export default function Technology({ c }: { c: SiteContent }) {
           <span className="me-2 font-mono text-[10px] uppercase tracking-[0.14em] text-white/60">{t.tagsLabel}</span>
           {t.tags.map((tag) => <span key={tag} className="tag-onDark">{tag}</span>)}
         </div>
-        <SectionCta label={c.sectionCtas.technology} dark />
+        <SectionCta
+          label={c.sectionCtas.technology}
+          dark
+          secondary={{ label: c.sectionCtas.technologyPage, href: `/${locale}/technology` }}
+        />
       </div>
     </section>
   );

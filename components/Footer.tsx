@@ -21,6 +21,7 @@ export default function Footer({
     { label: p.nav.home, href: `/${locale}` },
     { label: t.nav.company, href: `/${locale}/company` },
     { label: t.nav.services, href: `/${locale}/services` },
+    { label: t.nav.technology, href: `/${locale}/technology` },
     { label: t.nav.agreements, href: `/${locale}/agreements` },
     { label: t.nav.news, href: `/${locale}/news` },
     { label: t.nav.contact, href: `/${locale}/contact` },

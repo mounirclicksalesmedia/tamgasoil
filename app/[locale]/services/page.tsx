@@ -7,6 +7,7 @@ import { corporateMetadata } from "@/lib/corporate-metadata";
 import PageHero from "@/components/PageHero";
 import PageCta from "@/components/PageCta";
 import ServiceCatalog from "@/components/ServiceCatalog";
+import { getProfile } from "@/lib/profile";
 export async function generateMetadata({
   params,
 }: {
@@ -26,7 +27,8 @@ export default async function Page({
   if (!isLocale(locale)) notFound();
   const t = getCorporate(locale),
     c = getContent(locale),
-    s = getPages(locale).services;
+    s = getPages(locale).services,
+    p = getProfile(locale).services;
   return (
     <main>
       <PageHero
@@ -45,7 +47,31 @@ export default async function Page({
           </Link>
         </div>
       </PageHero>
+      <section className="bg-wine-700 text-white">
+        <div className="shell grid gap-6 py-12 md:grid-cols-[auto_1fr] md:items-center md:gap-16 md:py-16">
+          <p className="eyebrow eyebrow-light text-green-300">{p.scopeLabel}</p>
+          <p className="text-[clamp(1.3rem,2.4vw,1.9rem)] font-medium leading-snug">
+            {p.scope}
+          </p>
+        </div>
+      </section>
       <ServiceCatalog c={c} s={s} locale={locale} />
+      <section className="section pb-0">
+        <div className="shell reveal rounded-3xl bg-surface p-7 md:p-12">
+          <h2 className="display-3">{p.assetsLabel}</h2>
+          <div className="mt-7 flex flex-wrap gap-3">
+            {p.assets.map((asset) => (
+              <span key={asset} className="tag border-wine-700/40 text-wine-700">
+                {asset}
+              </span>
+            ))}
+          </div>
+          <p className="mt-6 text-sm leading-relaxed text-ink-2">{p.assetsNote}</p>
+          <Link href={`/${locale}/technology`} className="arrow-link mt-7">
+            {getProfile(locale).technology.hero.title}
+          </Link>
+        </div>
+      </section>
       <section className="section">
         <div className="shell reveal">
           <h2 className="display-3 max-w-3xl">{s.standards.heading}</h2>

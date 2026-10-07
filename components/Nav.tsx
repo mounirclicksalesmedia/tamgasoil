@@ -14,6 +14,7 @@ export default function Nav({ c, locale }: { c: SiteContent; locale: Locale }) {
   const pathname = usePathname();
   const links = [
     { label: t.nav.services, path: "services" },
+    { label: t.nav.technology, path: "technology" },
     { label: t.nav.agreements, path: "agreements" },
     { label: t.nav.news, path: "news" },
     { label: t.nav.contact, path: "contact" },
