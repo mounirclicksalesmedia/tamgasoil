@@ -5,6 +5,7 @@ import type { SiteContent } from "@/lib/content";
 import type { Locale } from "@/lib/i18n";
 import { isPlaceholder, telHref, whatsappHref } from "@/lib/contact";
 import { ArrowRight } from "./Icons";
+import SocialLinks from "./SocialLinks";
 
 type Status = "idle" | "sending" | "sent" | "error";
 
@@ -71,6 +72,7 @@ export default function Contact({ c, locale }: { c: SiteContent; locale: Locale 
               </div>
             ))}
           </dl>
+          <SocialLinks className="mt-7" />
         </div>
 
         <div className="reveal" style={{ ["--reveal-delay" as string]: "120ms" }}>

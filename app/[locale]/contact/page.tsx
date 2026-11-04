@@ -7,6 +7,7 @@ import { getContent, getPages } from "@/lib/content";
 import { isPlaceholder, telHref, whatsappHref } from "@/lib/contact";
 import { isLocale, locales, type Locale } from "@/lib/i18n";
 import ContactForm from "@/components/ContactForm";
+import SocialLinks from "@/components/SocialLinks";
 import { ArrowRight } from "@/components/Icons";
 
 export function generateStaticParams() {
@@ -101,6 +102,7 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
                   {c.contact.details.whatsappLabel}
                 </a>
               )}
+              <SocialLinks tone="dark" className="sm:ms-auto" />
             </div>
           )}
         </div>

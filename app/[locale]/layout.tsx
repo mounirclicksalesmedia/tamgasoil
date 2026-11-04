@@ -4,6 +4,7 @@ import { IBM_Plex_Sans, IBM_Plex_Sans_Arabic, IBM_Plex_Mono } from "next/font/go
 import "../globals.css";
 
 import { getContent, getPages } from "@/lib/content";
+import { socialLinks } from "@/lib/contact";
 import { dirOf, isLocale, locales, type Locale } from "@/lib/i18n";
 import ScrollReveal from "@/components/ScrollReveal";
 import Nav from "@/components/Nav";
@@ -98,6 +99,7 @@ export default async function LocaleLayout({
       addressCountry: "QA",
     },
     areaServed: ["QA", "SA", "OM"],
+    sameAs: socialLinks.map((s) => s.href),
     knowsLanguage: ["en", "ar"],
   };
 

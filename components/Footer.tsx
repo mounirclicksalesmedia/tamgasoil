@@ -4,6 +4,7 @@ import type { PagesContent, SiteContent } from "@/lib/content";
 import type { Locale } from "@/lib/i18n";
 import { otherLocale } from "@/lib/i18n";
 import { Logo } from "./Icons";
+import SocialLinks from "./SocialLinks";
 
 export default function Footer({
   c,
@@ -47,6 +48,7 @@ export default function Footer({
             <p className="mt-5 max-w-sm font-mono text-[11px] leading-relaxed tracking-[0.03em] text-white/35">
               {f.partner}
             </p>
+            <SocialLinks className="mt-7" />
           </div>
 
           <nav aria-label={f.navLabel}>
