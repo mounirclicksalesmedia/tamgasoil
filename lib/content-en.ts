@@ -301,6 +301,20 @@ export const en = {
     ],
   },
 
+  video: {
+    youtubeId: "b7cSQdXZhAI",
+    eyebrow: "Our operations on film",
+    heading: "See how TAM works.",
+    intro: "A short film of our operations, from the science inside the tank to the oil we recover.",
+    caption: "How TAM works",
+    play: "Play video",
+    pause: "Pause video",
+    soundOn: "Sound on",
+    soundOff: "Mute",
+    fullscreen: "Full screen",
+    youtube: "Watch on YouTube",
+  },
+
   contact: {
     eyebrow: "Contact",
     heading: "Talk to our team in Doha.",

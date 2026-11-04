@@ -13,6 +13,7 @@ import Statement from "@/components/Statement";
 import Markets from "@/components/Markets";
 import Hse from "@/components/Hse";
 import Contact from "@/components/Contact";
+import VideoShowcase from "@/components/VideoShowcase";
 
 export default async function HomePage({
   params,
@@ -30,6 +31,7 @@ export default async function HomePage({
         <Hero c={c} />
         <Standards c={c} />
         <Pillars c={c} />
+        <VideoShowcase c={c} locale={typed} />
         <Process c={c} />
         <Services c={c} locale={typed} />
         <Technology c={c} locale={typed} />

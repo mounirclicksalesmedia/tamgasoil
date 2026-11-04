@@ -303,6 +303,20 @@ export const ar: SiteContent = {
     ],
   },
 
+  video: {
+    youtubeId: "b7cSQdXZhAI",
+    eyebrow: "عملياتنا في فيلم",
+    heading: "شاهد كيف تعمل تم.",
+    intro: "فيلم قصير عن عملياتنا، من العلم الذي يجري داخل الخزان إلى النفط الذي نستردّه.",
+    caption: "كيف تعمل تم",
+    play: "تشغيل الفيديو",
+    pause: "إيقاف الفيديو مؤقتاً",
+    soundOn: "تشغيل الصوت",
+    soundOff: "كتم الصوت",
+    fullscreen: "ملء الشاشة",
+    youtube: "شاهد على يوتيوب",
+  },
+
   contact: {
     eyebrow: "تواصل معنا",
     heading: "تحدّث إلى فريقنا في الدوحة.",

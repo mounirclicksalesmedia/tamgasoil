@@ -482,3 +482,29 @@ a.modern-card:hover .card-arrow { background: var(--color-green-800); color: whi
 .hero-video::-webkit-media-controls-overlay-play-button,
 .hero-video::-webkit-media-controls-start-playback-button,
 .hero-video::-webkit-media-controls-enclosure { display: none !important; -webkit-appearance: none; }
+
+/* Homepage film: grows into place as it arrives, plays while in view. */
+.video-glow { background: radial-gradient(60% 50% at 50% 62%, #15774f2e, transparent 70%); }
+.video-frame {
+  transform: scale(.94);
+  box-shadow: 0 40px 120px -40px #000c, 0 0 0 1px #8fbfa814;
+  transition: transform 1.2s var(--ease-out-soft), box-shadow 1.2s var(--ease-out-soft);
+}
+.video-frame.is-in-view { transform: none; box-shadow: 0 50px 140px -40px #000e, 0 0 0 1px #8fbfa826; }
+.video-host iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; pointer-events: none; }
+.video-surface:focus-visible { outline: 2px solid var(--color-green-300); outline-offset: -4px; border-radius: 22px; }
+.video-eq { display: inline-flex; align-items: flex-end; gap: 2px; height: 12px; flex: none; }
+.video-eq i { display: block; width: 2px; height: 4px; border-radius: 1px; background: var(--color-green-300); }
+.video-eq.is-playing i { animation: video-eq 1s ease-in-out infinite; }
+.video-eq.is-playing i:nth-child(2) { animation-delay: -.35s; }
+.video-eq.is-playing i:nth-child(3) { animation-delay: -.7s; }
+@keyframes video-eq { 0%, 100% { height: 3px; } 50% { height: 12px; } }
+[dir="rtl"] .video-controls .font-mono { font-family: var(--font-sans); letter-spacing: 0; text-transform: none; font-size: 13px; }
+.video-stage:fullscreen { display: flex; flex-direction: column; justify-content: center; margin: 0; padding: 2rem; background: #000; }
+.video-stage:fullscreen .video-frame,
+.video-stage:fullscreen .video-controls { width: min(100%, calc((100vh - 9rem) * 16 / 9)); margin-inline: auto; }
+.video-stage:fullscreen .video-frame { transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .video-frame { transform: none; transition: none; }
+  .video-eq.is-playing i { animation: none; height: 8px; }
+}
