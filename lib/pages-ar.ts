@@ -372,7 +372,7 @@ export const pagesAr: PagesContent = {
     locations: [
       {
         label: "المقر الرئيسي",
-        lines: ["[OFFICE ADDRESS]", "الدوحة، قطر"],
+        lines: ["الدوحة، قطر"],
       },
       {
         label: "الأسواق التي نخدمها",

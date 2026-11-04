@@ -55,7 +55,7 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
               <Image src="/media/safety-team.webp" alt="" fill preload sizes="(min-width: 1024px) 45vw, 100vw" className="object-cover object-[center_40%]" />
             </div>
             <dl className="mt-7 hidden flex-wrap gap-x-12 lg:flex gap-y-5">
-              <div><dt className="text-xs text-green-300">{k.railLabels.office}</dt><dd className="mt-1.5 text-sm">{k.locations[0].lines[1]}</dd></div>
+              <div><dt className="text-xs text-green-300">{k.railLabels.office}</dt><dd className="mt-1.5 text-sm">{k.locations[0].lines[0]}</dd></div>
               <div><dt className="text-xs text-green-300">{k.railLabels.hours}</dt><dd className="mt-1.5 text-sm">{k.hours}</dd></div>
               {!isPlaceholder(phone) && (
                 <div><dt className="text-xs text-green-300">{k.railLabels.phone}</dt><dd className="mt-1.5 text-sm"><a href={telHref(phone)} dir="ltr" className="hover:underline">{phone}</a></dd></div>

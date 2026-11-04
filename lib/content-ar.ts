@@ -322,13 +322,13 @@ export const ar: SiteContent = {
     detailsLabel: "اتصال مباشر",
     details: {
       emailLabel: "البريد الإلكتروني",
-      email: "[EMAIL ADDRESS]",
+      email: "info@tamoilgas.com",
       phoneLabel: "الهاتف",
       phone: "+974 3133 3812",
       whatsappLabel: "واتساب",
       whatsapp: "+974 3133 3812",
       addressLabel: "العنوان",
-      address: "[OFFICE ADDRESS]، الدوحة، قطر",
+      address: "الدوحة، قطر",
     },
   },
 

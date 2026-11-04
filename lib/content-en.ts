@@ -320,13 +320,13 @@ export const en = {
     detailsLabel: "Direct",
     details: {
       emailLabel: "Email",
-      email: "[EMAIL ADDRESS]",
+      email: "info@tamoilgas.com",
       phoneLabel: "Phone",
       phone: "+974 3133 3812",
       whatsappLabel: "WhatsApp",
       whatsapp: "+974 3133 3812",
       addressLabel: "Address",
-      address: "[OFFICE ADDRESS], Doha, Qatar",
+      address: "Doha, Qatar",
     },
   },
 

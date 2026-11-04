@@ -48,7 +48,7 @@ export default function Contact({ c, locale }: { c: SiteContent; locale: Locale 
               {k.detailsLabel}
             </p>
             {[
-              { label: k.details.emailLabel, value: k.details.email },
+              { label: k.details.emailLabel, value: k.details.email, href: `mailto:${k.details.email}` },
               { label: k.details.phoneLabel, value: k.details.phone, href: telHref(k.details.phone) },
               { label: k.details.whatsappLabel, value: k.details.whatsapp, href: whatsappHref(k.details.whatsapp), external: true },
               { label: k.details.addressLabel, value: k.details.address },

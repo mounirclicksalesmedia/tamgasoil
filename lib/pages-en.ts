@@ -377,7 +377,7 @@ export const pagesEn = {
     locations: [
       {
         label: "Head office",
-        lines: ["[OFFICE ADDRESS]", "Doha, Qatar"],
+        lines: ["Doha, Qatar"],
       },
       {
         label: "Markets served",

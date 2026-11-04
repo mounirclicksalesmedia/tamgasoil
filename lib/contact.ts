@@ -12,7 +12,7 @@ export const whatsappHref = (phone: string) => `https://wa.me/${phone.replace(/\
 export const socialLinks = [
   { network: "instagram", label: "Instagram", href: "https://www.instagram.com/tamoilgas" },
   { network: "x", label: "X", href: "https://x.com/tamoilgas" },
-  { network: "linkedin", label: "LinkedIn", href: "https://www.linkedin.com/in/tamoilgas" },
+  { network: "linkedin", label: "LinkedIn", href: "https://www.linkedin.com/company/tamoilgas" },
   { network: "facebook", label: "Facebook", href: "https://www.facebook.com/tamoilgas" },
 ] as const;
 
