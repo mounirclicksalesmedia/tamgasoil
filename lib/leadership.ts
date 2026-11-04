@@ -27,9 +27,9 @@ type Profile = {
 
 const profiles: Record<LeadershipSection, Profile> = {
   "general-assembly": {
-    image: "/media/leadership/qatar-doha-bay.webp",
-    position: "50% 50%",
-    decorative: true,
+    image: "/media/leadership/mohammed-al-hababi.webp",
+    position: "50% 20%",
+    decorative: false,
     en: {
       name: "Mr. Mohammed bin Fahad Al-Hababi",
       role: "Chairman of the Shareholders’ General Assembly",
