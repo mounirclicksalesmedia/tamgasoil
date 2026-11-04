@@ -61,15 +61,18 @@ const en = {
     "For technology collaboration, supply-chain support or regional opportunities, introduce your organisation and the capabilities you bring.",
   brochureTitle: "TAM, at a glance.",
   brochureIntro:
-    "A concise introduction to our approach, services and strategic direction, ready to keep or share.",
-  brochureLabel: "Company overview",
+    "Our official company profile, in English and Arabic: who we are, how the method works and what it recovers.",
+  brochureLabel: "Company profile",
   brochureNote:
-    "Prepared from the current website content. Leadership messages and unpublished agreement terms are not included.",
+    "One bilingual document, English and Arabic side by side. PDF, 17 spreads, about 14 MB.",
   download: "Download PDF",
+  brochureView: "Open in browser",
+  brochureCoverAlt: "Cover of the TAM for Oil & Gas Services company profile",
   brochureItems: [
-    "Company & approach",
-    "Services & capabilities",
-    "Strategic direction",
+    "Company, leadership and strategy",
+    "Services and the Micro-Bac partnership",
+    "Technology, how it works and field results",
+    "Work stages, product data and handling",
   ],
   proposalTitle: "Let’s define the right scope.",
   proposalIntro:
@@ -155,15 +158,18 @@ const ar: Copy = {
     "للتعاون التقني أو دعم سلسلة الإمداد أو الفرص الإقليمية، عرّفنا بمؤسستك والقدرات التي تقدمها.",
   brochureTitle: "تم، في لمحة.",
   brochureIntro:
-    "تعريف موجز بمنهجيتنا وخدماتنا وتوجهنا الاستراتيجي، للاطلاع والمشاركة.",
+    "الملف التعريفي الرسمي لشركتنا باللغتين العربية والإنجليزية: من نحن، وكيف تعمل منهجيتنا، وما الذي نستردّه.",
   brochureLabel: "الملف التعريفي للشركة",
   brochureNote:
-    "أُعدّ من محتوى الموقع الحالي. لا يتضمن كلمات الإدارة أو شروط الاتفاقيات غير المنشورة.",
+    "وثيقة واحدة ثنائية اللغة، العربية والإنجليزية جنباً إلى جنب. ملف PDF من ١٧ صفحة مزدوجة، بحجم ١٤ ميغابايت تقريباً.",
   download: "تحميل PDF",
+  brochureView: "عرض في المتصفح",
+  brochureCoverAlt: "غلاف الملف التعريفي لشركة تم لخدمات النفط والغاز",
   brochureItems: [
-    "الشركة ومنهجية العمل",
-    "الخدمات والقدرات",
-    "التوجه الاستراتيجي",
+    "الشركة والقيادة والاستراتيجية",
+    "الخدمات والشراكة مع مايكرو-باك",
+    "التقنية وآلية العمل والنتائج الميدانية",
+    "مراحل العمل وبيانات المنتجات والتعامل معها",
   ],
   proposalTitle: "لنحدّد نطاق العمل المناسب.",
   proposalIntro:

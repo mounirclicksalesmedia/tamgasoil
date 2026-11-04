@@ -5,6 +5,10 @@ import { getCorporate } from "@/lib/corporate";
 import { corporateMetadata } from "@/lib/corporate-metadata";
 import PageHero from "@/components/PageHero";
 import PageCta from "@/components/PageCta";
+
+/** The official bilingual (English + Arabic) company profile. */
+const PROFILE_PDF = "/downloads/tam-company-profile.pdf";
+
 export async function generateMetadata({
   params,
 }: {
@@ -33,26 +37,22 @@ export default async function Page({
       <section className="section">
         <div className="shell grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
           <div className="reveal brochure-stage rounded-[2rem] bg-green-50 p-10 md:p-16">
-            <div className="brochure-cover relative mx-auto aspect-[3/4] max-w-[350px] overflow-hidden rounded-lg bg-green-950 shadow-2xl">
+            <a
+              href={PROFILE_PDF}
+              target="_blank"
+              rel="noopener"
+              aria-label={t.brochureView}
+              className="brochure-cover mx-auto block max-w-[360px]"
+            >
               <Image
-                src="/media/tank-farm-enhanced.webp"
-                alt=""
-                fill
-                sizes="350px"
-                className="object-cover opacity-50"
+                src="/media/company-profile-cover.webp"
+                alt={t.brochureCoverAlt}
+                width={987}
+                height={1128}
+                sizes="360px"
+                className="h-auto w-full drop-shadow-[0_28px_36px_rgba(52,11,20,0.32)]"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-green-950 via-green-950/30 to-transparent" />
-              <div className="absolute inset-x-7 top-8 font-mono text-xs tracking-widest text-white/70">
-                TAM · DOHA
-              </div>
-              <div className="absolute inset-x-7 bottom-9 text-white">
-                <p className="text-sm text-green-300">{t.brochureLabel}</p>
-                <h2 className="mt-4 text-3xl leading-snug">{t.companyTitle}</h2>
-                <p className="mt-6 font-mono text-xs text-white/50">
-                  2026 / PDF
-                </p>
-              </div>
-            </div>
+            </a>
           </div>
           <div className="reveal">
             <p className="eyebrow text-wine-700">{t.brochureLabel}</p>
@@ -71,19 +71,23 @@ export default async function Page({
               ))}
             </div>
             <div className="grid gap-3 sm:grid-cols-2">
-              {([locale, locale === "ar" ? "en" : "ar"] as const).map(
-                (lang) => (
-                  <a
-                    key={lang}
-                    href={`/downloads/tam-company-overview-${lang}.pdf`}
-                    download
-                    className={`btn ${lang === locale ? "btn-primary" : "btn-ghost"}`}
-                  >
-                    <span aria-hidden>↓</span>
-                    {t.download} · {lang === "ar" ? "العربية" : "English"}
-                  </a>
-                ),
-              )}
+              <a
+                href={PROFILE_PDF}
+                download="TAM-Oil-Gas-Company-Profile.pdf"
+                className="btn btn-primary"
+              >
+                <span aria-hidden>↓</span>
+                {t.download}
+              </a>
+              <a
+                href={PROFILE_PDF}
+                target="_blank"
+                rel="noopener"
+                className="btn btn-ghost"
+              >
+                {t.brochureView}
+                <span aria-hidden className="inline-block rtl:-scale-x-100">↗</span>
+              </a>
             </div>
             <p className="mt-6 text-xs leading-relaxed text-ink-3">
               {t.brochureNote}

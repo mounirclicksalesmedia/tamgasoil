@@ -24,11 +24,11 @@ Company, leadership, services, partnership and technical copy comes from the cli
 - the "Cost of one tank cleaning" comparison and any cost figures from the case studies;
 - any wording that credits the technology's chairman or founder personally. The operator list credits "the company behind this technology" / «الشركة المطوِّرة لهذه التقنية».
 
-The Chairman of the Shareholders' General Assembly page uses a decorative image of Doha Bay (`qatar-doha-bay.webp`, generated, no people) with the Qatar flag serration drawn in SVG, in place of a portrait. Replace it with an official portrait if one is supplied.
+The Chairman of the Shareholders' General Assembly uses his official portrait (`mohammed-al-hababi.webp`). The decorative Doha Bay image and Qatar flag serration remain available through `decorative: true` in `lib/leadership.ts` for any leader without a published portrait.
 
 No new signed agreements, terms, dates or partner claims have been invented. Existing news articles retain their draft notice on article pages.
 
-The downloadable PDFs are company overviews prepared from current website copy, not an uploaded official brochure. They are labelled accordingly on the download page and within the documents. Replace files at `public/downloads/tam-company-overview-{en,ar}.pdf` if an official brochure is supplied.
+The download page serves the official bilingual company profile supplied by TAM, `public/downloads/tam-company-profile.pdf` (English and Arabic on each spread), unchanged. To update it, replace that file and re-render the cover preview `public/media/company-profile-cover.webp` from page 1. The old `tam-company-overview-{en,ar}.pdf` addresses redirect to it (see `next.config.ts`). The generator below is kept for reference only; its output is no longer published.
 
 ## Regenerating brochures
 

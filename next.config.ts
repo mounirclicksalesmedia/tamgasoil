@@ -9,11 +9,19 @@ const renamedCompanyPages = [
 
 const nextConfig: NextConfig = {
   async redirects() {
-    return renamedCompanyPages.map(([from, to]) => ({
-      source: `/:locale(en|ar)/company/${from}`,
-      destination: `/:locale/company/${to}`,
-      permanent: true,
-    }));
+    return [
+      ...renamedCompanyPages.map(([from, to]) => ({
+        source: `/:locale(en|ar)/company/${from}`,
+        destination: `/:locale/company/${to}`,
+        permanent: true,
+      })),
+      // The generated EN/AR overviews were replaced by the official bilingual profile.
+      {
+        source: "/downloads/tam-company-overview-:lang(en|ar).pdf",
+        destination: "/downloads/tam-company-profile.pdf",
+        permanent: true,
+      },
+    ];
   },
 };
 
