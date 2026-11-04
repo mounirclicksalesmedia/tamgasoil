@@ -14,6 +14,7 @@ export const socialLinks = [
   { network: "x", label: "X", href: "https://x.com/tamoilgas" },
   { network: "linkedin", label: "LinkedIn", href: "https://www.linkedin.com/company/tamoilgas" },
   { network: "facebook", label: "Facebook", href: "https://www.facebook.com/tamoilgas" },
+  { network: "youtube", label: "YouTube", href: "https://www.youtube.com/@TamOilGas" },
 ] as const;
 
 export type SocialNetwork = (typeof socialLinks)[number]["network"];
