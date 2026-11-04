@@ -91,6 +91,7 @@ export default async function LocaleLayout({
     name: c.brand.fullName,
     url: `${SITE_URL}/${typed}`,
     description: c.meta.description,
+    telephone: c.contact.details.phone,
     address: {
       "@type": "PostalAddress",
       addressLocality: "Doha",

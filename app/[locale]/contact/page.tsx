@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { getContent, getPages } from "@/lib/content";
+import { isPlaceholder, telHref, whatsappHref } from "@/lib/contact";
 import { isLocale, locales, type Locale } from "@/lib/i18n";
 import ContactForm from "@/components/ContactForm";
 import { ArrowRight } from "@/components/Icons";
@@ -39,6 +40,7 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
   const href = (value: string) => value.startsWith("#") ? value : `/${typed}${value === "/process" ? "#process" : value}`;
   const email = c.contact.details.email;
   const phone = c.contact.details.phone;
+  const whatsapp = c.contact.details.whatsapp;
 
   return (
     <main>
@@ -54,6 +56,12 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
             <dl className="mt-7 hidden flex-wrap gap-x-12 lg:flex gap-y-5">
               <div><dt className="text-xs text-green-300">{k.railLabels.office}</dt><dd className="mt-1.5 text-sm">{k.locations[0].lines[1]}</dd></div>
               <div><dt className="text-xs text-green-300">{k.railLabels.hours}</dt><dd className="mt-1.5 text-sm">{k.hours}</dd></div>
+              {!isPlaceholder(phone) && (
+                <div><dt className="text-xs text-green-300">{k.railLabels.phone}</dt><dd className="mt-1.5 text-sm"><a href={telHref(phone)} dir="ltr" className="hover:underline">{phone}</a></dd></div>
+              )}
+              {!isPlaceholder(whatsapp) && (
+                <div><dt className="text-xs text-green-300">{c.contact.details.whatsappLabel}</dt><dd className="mt-1.5 text-sm"><a href={whatsappHref(whatsapp)} target="_blank" rel="noopener noreferrer" dir="ltr" className="hover:underline">{whatsapp}</a></dd></div>
+              )}
             </dl>
           </div>
           <div id="enquiry" className="self-start rounded-2xl bg-paper p-6 text-ink sm:p-8 lg:p-10">
@@ -83,11 +91,16 @@ export default async function ContactPage({ params }: { params: Promise<{ locale
               </article>
             ))}
           </div>
-          {!email.includes("[") && !phone.includes("[") && (
+          {(!isPlaceholder(email) || !isPlaceholder(phone)) && (
             <div className="mt-8 flex flex-wrap items-center gap-6 border-t border-line pt-8">
               <p className="text-ink-2">{k.directLabel}</p>
-              <a href={`mailto:${email}`} className="arrow-link">{email}</a>
-              <a href={`tel:${phone.replace(/[^+0-9]/g, "")}`} className="arrow-link">{phone}</a>
+              {!isPlaceholder(email) && <a href={`mailto:${email}`} className="arrow-link">{email}</a>}
+              {!isPlaceholder(phone) && <a href={telHref(phone)} dir="ltr" className="arrow-link">{phone}</a>}
+              {!isPlaceholder(whatsapp) && (
+                <a href={whatsappHref(whatsapp)} target="_blank" rel="noopener noreferrer" className="arrow-link">
+                  {c.contact.details.whatsappLabel}
+                </a>
+              )}
             </div>
           )}
         </div>

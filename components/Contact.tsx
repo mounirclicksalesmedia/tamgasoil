@@ -3,6 +3,7 @@
 import { useState } from "react";
 import type { SiteContent } from "@/lib/content";
 import type { Locale } from "@/lib/i18n";
+import { isPlaceholder, telHref, whatsappHref } from "@/lib/contact";
 import { ArrowRight } from "./Icons";
 
 type Status = "idle" | "sending" | "sent" | "error";
@@ -46,13 +47,27 @@ export default function Contact({ c, locale }: { c: SiteContent; locale: Locale 
               {k.detailsLabel}
             </p>
             {[
-              [k.details.emailLabel, k.details.email],
-              [k.details.phoneLabel, k.details.phone],
-              [k.details.addressLabel, k.details.address],
-            ].map(([label, value]) => (
+              { label: k.details.emailLabel, value: k.details.email },
+              { label: k.details.phoneLabel, value: k.details.phone, href: telHref(k.details.phone) },
+              { label: k.details.whatsappLabel, value: k.details.whatsapp, href: whatsappHref(k.details.whatsapp), external: true },
+              { label: k.details.addressLabel, value: k.details.address },
+            ].map(({ label, value, href, external }) => (
               <div key={label} className="flex flex-wrap gap-x-4 gap-y-1">
                 <dt className="min-w-[7.5rem] text-[0.875rem] text-white/45">{label}</dt>
-                <dd className="text-[0.9375rem] text-white">{value}</dd>
+                <dd className="text-[0.9375rem] text-white">
+                  {href && !isPlaceholder(value) ? (
+                    <a
+                      href={href}
+                      dir="ltr"
+                      className="underline-offset-4 transition-colors hover:text-white/75 hover:underline"
+                      {...(external && { target: "_blank", rel: "noopener noreferrer" })}
+                    >
+                      {value}
+                    </a>
+                  ) : (
+                    value
+                  )}
+                </dd>
               </div>
             ))}
           </dl>

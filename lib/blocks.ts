@@ -19,7 +19,7 @@ export const blockTypes = {
   markets: { label: "Markets", template: { eyebrow: "", heading: "", intro: "", statusLabel: "", items: [{ country: "", phase: "", body: "", status: "", tone: "live" }] } },
   hse: { label: "HSE & Quality", template: { eyebrow: "", heading: "", items: [""], cta: "" } },
   growth: { label: "Growth phases", template: { eyebrow: "", heading: "", intro: "", items: [{ no: "01", title: "", period: "", body: "" }] } },
-  contact: { label: "Homepage contact (wine)", template: { eyebrow: "", heading: "", body: "", fields: { name: "", company: "", email: "", message: "", messageHint: "" }, button: "", sending: "", note: "", success: "", error: "", detailsLabel: "", details: { emailLabel: "", email: "", phoneLabel: "", phone: "", addressLabel: "", address: "" } } },
+  contact: { label: "Homepage contact (wine)", template: { eyebrow: "", heading: "", body: "", fields: { name: "", company: "", email: "", message: "", messageHint: "" }, button: "", sending: "", note: "", success: "", error: "", detailsLabel: "", details: { emailLabel: "", email: "", phoneLabel: "", phone: "", whatsappLabel: "", whatsapp: "", addressLabel: "", address: "" } } },
   leadBand: { label: "Lead band (dark + form)", template: { eyebrow: "", headingLead: "", headingAccent: "", points: [""], formTitle: "" } },
   belief: { label: "Belief statement", template: { quote: "", caption: "" } },
   story: { label: "Story (heading + paragraphs)", template: { eyebrow: "", heading: "", paragraphs: [""] } },
